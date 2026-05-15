@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 新闻早报 | 2026-05-15</title>
+    <style>
+        :root {
+            --bg: #f8f9fc;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #6b7280;
+            --tech: #4f6ef7;
+            --device: #e8477a;
+            --telecom: #0db882;
+            --global: #8b5cf6;
+            --radius: 16px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --gradient-tech: linear-gradient(135deg, #4f6ef7 0%, #6b8cff 100%);
+            --gradient-device: linear-gradient(135deg, #e8477a 0%, #ff6b9d 100%);
+            --gradient-telecom: linear-gradient(135deg, #0db882 0%, #3dd9a0 100%);
+            --gradient-global: linear-gradient(135deg, #8b5cf6 0%, #a78bff 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-tech);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #4f6ef7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .date {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+        .card:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--bg);
+        }
+        .section-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .section-icon.tech { background: var(--gradient-tech); }
+        .section-icon.device { background: var(--gradient-device); }
+        .section-icon.telecom { background: var(--gradient-telecom); }
+        .section-icon.global { background: var(--gradient-global); }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .section-title.tech { color: var(--tech); }
+        .section-title.device { color: var(--device); }
+        .section-title.telecom { color: var(--telecom); }
+        .section-title.global { color: var(--global); }
+        .news-item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--bg);
+        }
+        .news-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .news-item:first-child { padding-top: 0; }
+        .news-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .news-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .news-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        .tag.tech { background: rgba(79,110,247,0.1); color: var(--tech); }
+        .tag.device { background: rgba(232,71,122,0.1); color: var(--device); }
+        .tag.telecom { background: rgba(13,184,130,0.1); color: var(--telecom); }
+        .tag.global { background: rgba(139,92,246,0.1); color: var(--global); }
+        .highlight {
+            background: linear-gradient(135deg, rgba(79,110,247,0.06) 0%, rgba(139,92,246,0.06) 100%);
+            border-left: 4px solid var(--tech);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+        .highlight h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--tech);
+        }
+        .highlight p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .highlight.green {
+            background: linear-gradient(135deg, rgba(13,184,130,0.06) 0%, rgba(79,110,247,0.06) 100%);
+            border-left: 4px solid var(--telecom);
+        }
+        .highlight.green h4 { color: var(--telecom); }
+        .telecom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .telecom-table th, .telecom-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg);
+        }
+        .telecom-table th {
+            background: rgba(13,184,130,0.08);
+            color: var(--telecom);
+            font-weight: 600;
+        }
+        .telecom-table tr:last-child td { border-bottom: none; }
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .footer a { color: var(--tech); text-decoration: none; }
+        .source-link {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .source-link:hover { color: var(--tech); text-decoration: underline; }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 26px; }
+            .card { padding: 20px; }
+            .telecom-table { font-size: 12px; }
+            .telecom-table th, .telecom-table td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">AI News Daily</div>
+            <h1>AI 新闻早报</h1>
+            <p class="date">2026 年 5 月 15 日 · 星期四</p>
+        </div>
+
+        <!-- AI技术进展 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon tech">🤖</div>
+                <div class="section-title tech">AI 技术进展</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">GPT-5.6 开发加速，OpenAI 补贴战抢夺 AI 编程市场</div>
+                <div class="news-desc">GPT-5.5 发布仅三周后，GPT-5.6 内部测试代码被曝光，开发进程全面提速，首批测试节点已启动验证，预计下月亮相。同时 OpenAI 在 AI 编程市场发起补贴战，与 Cursor、Windsurf 等工具争夺开发者生态。</div>
+                <div class="news-meta">
+                    <span class="tag tech">OpenAI</span>
+                    <span class="tag tech">GPT-5.6</span>
+                    <span class="tag tech">AI编程</span>
+                    <a class="source-link" href="https://www.itbear.com.cn/html/2026-05/1339410.html" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">田渊栋八人天团狂揽 44 亿元，杀入「递归进化」赛道</div>
+                <div class="news-desc">前 Meta AI 科学家田渊栋联合创立 Recursive 公司，获 6.5 亿美元融资，投资方包括谷歌和英伟达，估值达 315 亿元。目标让 AI 自己训练自己，替代 AI 研究员工作。</div>
+                <div class="news-meta">
+                    <span class="tag tech">融资</span>
+                    <span class="tag tech">递归AI</span>
+                    <span class="tag tech">英伟达</span>
+                    <a class="source-link" href="https://txtmix.com/posts/news/ai-morning-news-2026-05-15/" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">林俊旸创业：一个「Qwen 负责人」头衔值 135 亿</div>
+                <div class="news-desc">前通义千问负责人林俊旸正式创业，新公司估值已达 135 亿元，方向与多模态大模型相关。同时 DeepSeek 首轮融资估值突破 3000 亿元，月之暗面（Kimi）完成 140 亿元新一轮融资。</div>
+                <div class="news-meta">
+                    <span class="tag tech">大模型</span>
+                    <span class="tag tech">融资</span>
+                    <span class="tag tech">DeepSeek</span>
+                    <a class="source-link" href="https://news.qq.com/rain/a/20260507A055G300" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">李彦宏提 DAA 概念：AI 时代的新度量衡</div>
+                <div class="news-desc">百度 Create 2026 大会上，李彦宏首次提出「DAA」概念，认为其比 Token 更接近 AI 计算本质，有望成为评估 AI 模型能力的新标准。腾讯则开源 Agent 记忆技术方案，Token 消耗最高降低 61%。</div>
+                <div class="news-meta">
+                    <span class="tag tech">百度</span>
+                    <span class="tag tech">DAA</span>
+                    <span class="tag tech">腾讯开源</span>
+                    <a class="source-link" href="https://txtmix.com/posts/news/ai-morning-news-2026-05-15/" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">字节提出视觉生成第三种路线：挑战扩散与自回归</div>
+                <div class="news-desc">字节跳动提出新视觉生成范式，让模型像人类一样边画边改，不依赖扩散也不依赖纯自回归，开辟视觉生成新方向。阿里达摩院 I²B-LPO 框架则打破推理同质化，论文被 ACL 2026 收录。</div>
+                <div class="news-meta">
+                    <span class="tag tech">字节跳动</span>
+                    <span class="tag tech">视觉生成</span>
+                    <span class="tag tech">ACL 2026</span>
+                    <a class="source-link" href="https://txtmix.com/posts/news/ai-morning-news-2026-05-15/" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>📊 2026 AI 大模型价格战白热化</h4>
+                <p>GPT-5.5、Claude Opus 死守高端定价，DeepSeek V4 和 GLM-4.7 把价格打到地板价。便宜的不一定差，贵的不一定值——AI 行业正从军备竞赛转向实用主义。</p>
+                <a class="source-link" href="https://www.sohu.com/a/1020657494_116365" target="_blank" style="margin-top:8px">来源 ↗</a>
+            </div>
+        </div>
+
+        <!-- AI智能终端 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon device">📱</div>
+                <div class="section-title device">AI 智能终端 / 算力盒子</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">2026 全球 AI 终端展深圳开幕，数千款「新物种」亮相</div>
+                <div class="news-desc">5 月 14 日，2026 全球人工智能终端展在深圳会展中心开幕。展会以「端启未来·万物新生」为主题，汇聚模块化变形机器人、家庭服务机器人、AI 法律自助舱、外骨骼助力机器人等前沿产品，展现 AI 从实验室走向日常生活的全链条落地。</div>
+                <div class="news-meta">
+                    <span class="tag device">AI终端</span>
+                    <span class="tag device">机器人</span>
+                    <span class="tag device">深圳</span>
+                    <a class="source-link" href="https://www.sznews.com/news/content/2026-05/15/content_32051065.htm" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">联发科天玑开发者大会 MDDC 2026：智能体化体验新愿景</div>
+                <div class="news-desc">MediaTek 5 月 13 日召开天玑开发者大会，推出面向移动和汽车两大核心领域的智能体化体验方案，发布先进开发者工具和创新解决方案。联发科以全场景芯片平台为底座，携手生态伙伴构建无处不在的智能体化新体验。</div>
+                <div class="news-meta">
+                    <span class="tag device">联发科</span>
+                    <span class="tag device">天玑</span>
+                    <span class="tag device">智能体</span>
+                    <a class="source-link" href="https://finance.sina.com.cn/tech/roll/2026-05-13/doc-inhxtqxr4615364.shtml" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">2026 手机 AI 横评：OPPO / 华为 / 小米 AI 智能体实测对比</div>
+                <div class="news-desc">OPPO Find X9 Ultra 凭借 AI 一键闪记、小布记忆等创新功能成为高端旗舰 AI 体验新标杆；荣耀 Magic8 RSR 主打游戏 AI 优化；小米 17 Pro、华为 Mate 70 等均将 AI 智能体作为旗舰标配。端侧 AI 从概念走向大规模商用。</div>
+                <div class="news-meta">
+                    <span class="tag device">手机AI</span>
+                    <span class="tag device">OPPO</span>
+                    <span class="tag device">华为</span>
+                    <a class="source-link" href="https://mobile.pconline.com.cn/2148/21484231.html" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">谷歌发现 Agent 时代头号硬件不是手机，PC 端成 AI 决战新战场</div>
+                <div class="news-desc">谷歌 Chromebook 推出 Googlebook 品牌，深度整合 Google AI 服务，目标覆盖办公场景。同时 AI 交互从纯对话向可视化点击演进，多家厂商推出基于鼠标操作的新一代 AI 界面。</div>
+                <div class="news-meta">
+                    <span class="tag device">谷歌</span>
+                    <span class="tag device">PC端AI</span>
+                    <span class="tag device">AI交互</span>
+                    <a class="source-link" href="https://txtmix.com/posts/news/ai-morning-news-2026-05-15/" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 国内运营商 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon telecom">📡</div>
+                <div class="section-title telecom">国内运营商 Token 经营</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">中国移动：发布 Token 运营生态体系，联合 8 家伙伴组建联盟</div>
+                <div class="news-desc">5 月 8 日苏州移动云大会，中国移动发布 Token 运营生态体系，联合腾讯、阿里、华为、中兴、科大讯飞等组建「Token 应用生态联盟」，升级 MoMA 移动模型服务平台，计划将 Token 打造为连接算力、模型、应用与用户的「通用货币」。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">中国移动</span>
+                    <span class="tag telecom">Token联盟</span>
+                    <span class="tag telecom">MoMA</span>
+                    <a class="source-link" href="https://tech.huanqiu.com/article/4RTvtkTx4h8" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">中国电信：柯瑞文称 Token 经营本质是提供 AI 服务，发布星辰 TokenHub 1.0</div>
+                <div class="news-desc">中国电信董事长柯瑞文提出「智能云体系就是 Token 经营体系」，发布国内首个一体化 Token 运营服务平台——星辰 TokenHub 1.0，支持多模型聚合与智能路由，实现「一点接入、全网复用」。智算规模超 91EFLOPS，汇聚 20 万亿 Token 训练数据。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">中国电信</span>
+                    <span class="tag telecom">TokenHub</span>
+                    <span class="tag telecom">星辰</span>
+                    <a class="source-link" href="https://finance.sina.com.cn/jjxw/2026-05-06/doc-inhwyqfw8183932.shtml" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">中国联通：构建「智能体 + Token + AI 云」算力经营新模式</div>
+                <div class="news-desc">中国联通董昕明确构建「智能体+Token+AI云」的算力经营新模式，激活算力价值，将 Token 服务作为经营主线。三大运营商集体拉开从「流量经营」向「AI 算力经营」转型序幕。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">中国联通</span>
+                    <span class="tag telecom">智能体</span>
+                    <span class="tag telecom">算力经营</span>
+                    <a class="source-link" href="https://caifuhao.eastmoney.com/news/20260415114203714470430" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="highlight green">
+                <h4>📊 三大运营商 Token 经营战略对比</h4>
+                <table class="telecom-table">
+                    <tr>
+                        <th>运营商</th>
+                        <th>核心定位</th>
+                        <th>关键平台</th>
+                        <th>生态合作</th>
+                    </tr>
+                    <tr>
+                        <td>中国移动</td>
+                        <td>Token 通用货币</td>
+                        <td>MoMA 模型服务</td>
+                        <td>8 家 Token 联盟</td>
+                    </tr>
+                    <tr>
+                        <td>中国电信</td>
+                        <td>Token 即 AI 服务</td>
+                        <td>星辰 TokenHub</td>
+                        <td>91EFLOPS 智算</td>
+                    </tr>
+                    <tr>
+                        <td>中国联通</td>
+                        <td>智能体+Token+云</td>
+                        <td>AI 云平台</td>
+                        <td>算力经营新模式</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 国际运营商 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon global">🌐</div>
+                <div class="section-title global">国际运营商 AI & Token 商务</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">SK Telecom MWC 2026：发布「主权 AI 方案」，重塑运营商角色</div>
+                <div class="news-desc">SK Telecom CEO 在 MWC 2026 发布「Sovereign AI Package」战略，包含 AIDC 基础设施、自研 A.X K1 模型和行业 AI 服务三层架构。强调电信运营商必须超越数据传输，在塑造 AI 基础设施方面发挥主导作用。其 AIDC 互联架构已获 ITU-T 国际标准认可。</div>
+                <div class="news-meta">
+                    <span class="tag global">SK Telecom</span>
+                    <span class="tag global">主权AI</span>
+                    <span class="tag global">AIDC</span>
+                    <a class="source-link" href="https://news.sktelecom.com/en/2796" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">德国电信 MWC 2026：Magenta AI 规模化落地，主打通话助手</div>
+                <div class="news-desc">德国电信以「Magenta AI at scale. Human at heart.」为理念，推出全球首个网络嵌入式 AI 通话助手——Magenta AI 通话助手，无需 App 即可实现实时翻译、通话摘要和问答。慕尼黑 AI 工厂强调欧洲数据主权，网络 AI 智能体实现自动优化移动网络容量。</div>
+                <div class="news-meta">
+                    <span class="tag global">德国电信</span>
+                    <span class="tag global">Magenta AI</span>
+                    <span class="tag global">数据主权</span>
+                    <a class="source-link" href="https://www.rcrwireless.com/20260303/carriers/deutsche-telekom-ai-4" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">NVIDIA 联合全球电信巨头构建 6G 开放 AI 原生平台</div>
+                <div class="news-desc">NVIDIA 在 MWC 2026 宣布联合德国电信、英国电信、爱立信、诺基亚等构建 6G 开放安全 AI 原生平台。SK Telecom 亦与 Orange、e& Group、NTT 等深化 AIDC 全球合作，横跨亚洲、欧洲和中东。</div>
+                <div class="news-meta">
+                    <span class="tag global">NVIDIA</span>
+                    <span class="tag global">6G</span>
+                    <span class="tag global">AI原生</span>
+                    <a class="source-link" href="https://blogs.nvidia.cn/blog/nvidia-and-global-telecom-leaders-commit-to-build-6g-on-open-and-secure-ai-native-platforms/" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>🌍 全球运营商 AI 转型共识</h4>
+                <p>从 SKT 主权 AI、德国电信 Magenta AI 到中国移动 Token 生态——全球运营商正从「流量管道」转向「AI 基础设施提供商」，数据主权与 Token 经营成为共同主题。</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>AI News Daily · 每日 9:00 自动生成</p>
+            <p style="margin-top: 4px;">数据来源：36kr、量子位、新华网、新浪财经、Text Matrix 等</p>
+            <p style="margin-top: 8px;"><a href="https://suranus.github.io/ai-news-daily/">🏠 返回首页</a></p>
+        </div>
+    </div>
+</body>
+</html>
