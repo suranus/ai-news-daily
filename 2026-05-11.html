@@ -7,201 +7,164 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0a1a;--bg2:#0d1117;--card:#111827;--card-border:#1e293b;
-  --cyan:#00f0ff;--magenta:#ff00aa;--green:#00ff88;--blue:#4169e1;
-  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
-  --glow-cyan:0 0 20px rgba(0,240,255,.3);
-  --glow-magenta:0 0 20px rgba(255,0,170,.3);
-  --glow-green:0 0 20px rgba(0,255,136,.3);
+  --bg:#f8f9fc;--bg2:#ffffff;--card:#ffffff;--card-border:#eef0f6;
+  --tech:#4f6ef7;--tech-light:#eef1ff;
+  --device:#e8477a;--device-light:#fff0f4;
+  --telecom:#0db882;--telecom-light:#edfcf6;
+  --global:#8b5cf6;--global-light:#f3f0ff;
+  --text:#1a1d2e;--text2:#5a5f7a;--text3:#9a9eb8;
+  --shadow:0 2px 16px rgba(26,29,46,.06);
+  --shadow-hover:0 8px 32px rgba(26,29,46,.1);
+  --radius:16px;
+  --gradient:linear-gradient(135deg,#4f6ef7 0%,#e8477a 50%,#0db882 100%);
 }
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC',sans-serif;
-  line-height:1.7;min-height:100vh;overflow-x:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC',sans-serif;
+  line-height:1.7;min-height:100vh;
+  -webkit-font-smoothing:antialiased;
 }
-/* Grid background */
-body::before{
-  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    linear-gradient(rgba(0,240,255,.03) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,240,255,.03) 1px,transparent 1px);
-  background-size:60px 60px;
-  animation:gridMove 20s linear infinite;
-}
-@keyframes gridMove{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
-/* Scanline */
-body::after{
-  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
-}
-.container{max-width:960px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+.blob1,.blob2,.blob3{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+.blob1{width:500px;height:500px;background:rgba(79,110,247,.06);top:-100px;right:-100px}
+.blob2{width:400px;height:400px;background:rgba(232,71,122,.05);bottom:-80px;left:-80px}
+.blob3{width:350px;height:350px;background:rgba(139,92,246,.04);top:50%;left:50%;transform:translate(-50%,-50%)}
+.container{max-width:780px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 
 /* Header */
-.header{
-  padding:60px 0 40px;text-align:center;
-  border-bottom:1px solid var(--card-border);
-}
+.header{padding:56px 0 36px;text-align:center}
 .header .logo{
-  font-size:12px;letter-spacing:8px;text-transform:uppercase;
-  color:var(--cyan);margin-bottom:12px;
-  text-shadow:var(--glow-cyan);
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:6px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:16px;
+  padding:6px 16px;border-radius:20px;
+  background:var(--bg2);border:1px solid var(--card-border);
 }
-.header h1{
-  font-size:clamp(28px,5vw,48px);font-weight:800;
-  background:linear-gradient(135deg,var(--cyan),var(--magenta));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:glitch 3s infinite;
-}
-@keyframes glitch{
-  0%,92%,100%{transform:translate(0)}
-  93%{transform:translate(-2px,1px)}
-  95%{transform:translate(2px,-1px)}
-  97%{transform:translate(-1px,2px)}
-}
-.header .date{
-  font-size:18px;color:var(--text2);margin-top:12px;
-  font-variant-numeric:tabular-nums;
-}
-.header .date span{
-  color:var(--cyan);font-weight:600;
-}
+.header .logo .dot{width:6px;height:6px;border-radius:50%;background:var(--gradient);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.header h1{font-size:clamp(28px,5vw,42px);font-weight:800;color:var(--text);letter-spacing:-.5px}
+.header h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header .date{font-size:15px;color:var(--text2);margin-top:10px;font-variant-numeric:tabular-nums}
+.header .date b{color:var(--tech);font-weight:600}
 
-/* Stats bar */
+/* Stats */
 .stats{
-  display:flex;justify-content:center;gap:32px;
-  padding:24px 0;margin:20px 0;
-  border-bottom:1px solid var(--card-border);
+  display:flex;justify-content:center;gap:0;
+  padding:0;margin:20px 0 32px;
+  background:var(--bg2);border-radius:var(--radius);
+  border:1px solid var(--card-border);
+  box-shadow:var(--shadow);overflow:hidden;
 }
-.stat{text-align:center}
-.stat .num{
-  font-size:28px;font-weight:800;
-  background:linear-gradient(135deg,var(--cyan),var(--magenta));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.stat .label{font-size:12px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.stat{flex:1;text-align:center;padding:20px 12px;border-right:1px solid var(--card-border)}
+.stat:last-child{border-right:none}
+.stat .num{font-size:28px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat .label{font-size:11px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
 
 /* Section */
-.section{padding:48px 0 24px}
-.section-header{
-  display:flex;align-items:center;gap:12px;margin-bottom:28px;
-}
+.section{padding:32px 0 16px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .section-icon{
-  width:40px;height:40px;border-radius:10px;
+  width:36px;height:36px;border-radius:10px;
   display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;
+  font-size:17px;flex-shrink:0;
 }
-.section-icon.tech{background:rgba(0,240,255,.12);border:1px solid rgba(0,240,255,.3)}
-.section-icon.device{background:rgba(255,0,170,.12);border:1px solid rgba(255,0,170,.3)}
-.section-icon.telecom{background:rgba(0,255,136,.12);border:1px solid rgba(0,255,136,.3)}
-.section-title{
-  font-size:22px;font-weight:700;
-}
-.section-title.tech{color:var(--cyan)}
-.section-title.device{color:var(--magenta)}
-.section-title.telecom{color:var(--green)}
-.section-count{
-  font-size:12px;color:var(--text3);background:var(--card);
-  padding:2px 10px;border-radius:20px;border:1px solid var(--card-border);
-}
+.section-icon.tech{background:var(--tech-light);border:1px solid rgba(79,110,247,.15)}
+.section-icon.device{background:var(--device-light);border:1px solid rgba(232,71,122,.15)}
+.section-icon.telecom{background:var(--telecom-light);border:1px solid rgba(13,184,130,.15)}
+.section-icon.global{background:var(--global-light);border:1px solid rgba(139,92,246,.15)}
+.section-title{font-size:18px;font-weight:700;color:var(--text)}
+.section-count{font-size:11px;color:var(--text3);background:var(--bg);padding:2px 10px;border-radius:20px;border:1px solid var(--card-border);margin-left:auto}
 
 /* Card */
 .card{
   background:var(--card);border:1px solid var(--card-border);
-  border-radius:12px;padding:24px;margin-bottom:16px;
-  transition:all .3s ease;position:relative;overflow:hidden;
+  border-radius:var(--radius);padding:22px 24px;margin-bottom:12px;
+  transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+  box-shadow:var(--shadow);
 }
-.card::before{
-  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
-  border-radius:3px 0 0 3px;
-}
-.card.tech::before{background:var(--cyan);box-shadow:var(--glow-cyan)}
-.card.device::before{background:var(--magenta);box-shadow:var(--glow-magenta)}
-.card.telecom::before{background:var(--green);box-shadow:var(--glow-green)}
-.card:hover{
-  transform:translateY(-2px);
-  border-color:rgba(255,255,255,.1);
-  box-shadow:0 8px 32px rgba(0,0,0,.3);
-}
-.card.tech:hover{border-color:rgba(0,240,255,.3)}
-.card.device:hover{border-color:rgba(255,0,170,.3)}
-.card.telecom:hover{border-color:rgba(0,255,136,.3)}
-.card-title{
-  font-size:16px;font-weight:600;color:var(--text);
-  margin-bottom:8px;line-height:1.5;
-}
-.card-source{
-  display:inline-block;font-size:11px;
-  padding:2px 8px;border-radius:4px;margin-bottom:10px;
-  font-weight:500;
-}
-.card-source.tech{background:rgba(0,240,255,.1);color:var(--cyan);border:1px solid rgba(0,240,255,.2)}
-.card-source.device{background:rgba(255,0,170,.1);color:var(--magenta);border:1px solid rgba(255,0,170,.2)}
-.card-source.telecom{background:rgba(0,255,136,.1);color:var(--green);border:1px solid rgba(0,255,136,.2)}
-.card-summary{
-  font-size:14px;color:var(--text2);line-height:1.8;
-  margin-bottom:12px;
-}
+.card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px}
+.card.tech::before{background:var(--tech)}
+.card.device::before{background:var(--device)}
+.card.telecom::before{background:var(--telecom)}
+.card.global::before{background:var(--global)}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.card.tech:hover{border-color:rgba(79,110,247,.2)}
+.card.device:hover{border-color:rgba(232,71,122,.2)}
+.card.telecom:hover{border-color:rgba(13,184,130,.2)}
+.card.global:hover{border-color:rgba(139,92,246,.2)}
+.card-title{font-size:15px;font-weight:650;color:var(--text);margin-bottom:8px;line-height:1.6}
+.card-source{display:inline-block;font-size:11px;padding:2px 10px;border-radius:6px;margin-bottom:10px;font-weight:500}
+.card-source.tech{background:var(--tech-light);color:var(--tech)}
+.card-source.device{background:var(--device-light);color:var(--device)}
+.card-source.telecom{background:var(--telecom-light);color:var(--telecom)}
+.card-source.global{background:var(--global-light);color:var(--global)}
+.card-summary{font-size:13.5px;color:var(--text2);line-height:1.9;margin-bottom:12px}
 .card-link{
-  display:inline-flex;align-items:center;gap:6px;
+  display:inline-flex;align-items:center;gap:5px;
   font-size:12px;text-decoration:none;
-  padding:4px 12px;border-radius:6px;
-  transition:all .2s;
+  padding:5px 14px;border-radius:8px;
+  transition:all .2s;font-weight:500;
 }
-.card-link.tech{color:var(--cyan);border:1px solid rgba(0,240,255,.2)}
-.card-link.tech:hover{background:rgba(0,240,255,.1)}
-.card-link.device{color:var(--magenta);border:1px solid rgba(255,0,170,.2)}
-.card-link.device:hover{background:rgba(255,0,170,.1)}
-.card-link.telecom{color:var(--green);border:1px solid rgba(0,255,136,.2)}
-.card-link.telecom:hover{background:rgba(0,255,136,.1)}
+.card-link.tech{color:var(--tech);background:var(--tech-light)}
+.card-link.tech:hover{background:rgba(79,110,247,.15)}
+.card-link.device{color:var(--device);background:var(--device-light)}
+.card-link.device:hover{background:rgba(232,71,122,.15)}
+.card-link.telecom{color:var(--telecom);background:var(--telecom-light)}
+.card-link.telecom:hover{background:rgba(13,184,130,.15)}
+.card-link.global{color:var(--global);background:var(--global-light)}
+.card-link.global:hover{background:rgba(139,92,246,.15)}
 .card-link svg{width:12px;height:12px}
 
-/* No update */
-.no-update{
-  text-align:center;padding:32px;color:var(--text3);
-  font-size:14px;border:1px dashed var(--card-border);
-  border-radius:12px;margin-bottom:16px;
+/* Highlight box */
+.highlight{
+  background:var(--bg);border:1px solid var(--card-border);
+  border-radius:12px;padding:16px 20px;margin-bottom:12px;
+  font-size:13px;color:var(--text2);line-height:1.9;
 }
+.highlight strong{color:var(--text);font-weight:600}
+.highlight .tag{
+  display:inline-block;font-size:10px;padding:1px 8px;border-radius:4px;
+  margin-right:6px;font-weight:600;letter-spacing:.5px;
+}
+.highlight .tag.telecom{background:var(--telecom-light);color:var(--telecom)}
+.highlight .tag.global{background:var(--global-light);color:var(--global)}
+
+/* No update */
+.no-update{text-align:center;padding:28px;color:var(--text3);font-size:13px;border:1px dashed var(--card-border);border-radius:var(--radius);margin-bottom:12px;background:var(--bg2)}
 
 /* Footer */
-.footer{
-  text-align:center;padding:40px 0;
-  border-top:1px solid var(--card-border);
-  margin-top:40px;
-}
+.footer{text-align:center;padding:40px 0;margin-top:32px}
+.footer .divider{width:60px;height:3px;border-radius:3px;background:var(--gradient);margin:0 auto 20px}
 .footer p{font-size:12px;color:var(--text3)}
-.footer .brand{
-  font-size:10px;letter-spacing:4px;text-transform:uppercase;
-  color:var(--text3);margin-top:8px;
-}
-
-/* Particle canvas */
-#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.footer .brand{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--text3);margin-top:6px}
 
 /* Responsive */
 @media(max-width:640px){
-  .header{padding:40px 0 28px}
-  .stats{gap:16px;flex-wrap:wrap}
+  .header{padding:40px 0 24px}
+  .stats{gap:0}
   .stat .num{font-size:22px}
-  .section{padding:32px 0 16px}
-  .card{padding:18px}
-  .card-title{font-size:15px}
+  .stat .label{font-size:10px}
+  .section{padding:24px 0 12px}
+  .card{padding:18px 20px}
+  .card-title{font-size:14px}
+  .card-summary{font-size:13px}
 }
-
-/* Scroll animation */
-.card{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.card{opacity:0;transform:translateY(16px);transition:opacity .4s ease,transform .4s ease,box-shadow .3s ease,border-color .3s ease}
 .card.visible{opacity:1;transform:translateY(0)}
+.highlight{opacity:0;transform:translateY(16px);transition:opacity .4s ease,transform .4s ease}
+.highlight.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-<canvas id="particles"></canvas>
+<div class="blob1"></div>
+<div class="blob2"></div>
+<div class="blob3"></div>
 <div class="container">
 
 <header class="header">
-  <div class="logo">⚡ AI NEWS DAILY</div>
-  <h1>AI 新闻早报</h1>
-  <div class="date"><span>2026</span> 年 <span>5</span> 月 <span>11</span> 日 · 星期日</div>
+  <div class="logo"><span class="dot"></span>AI NEWS DAILY</div>
+  <h1>AI <span>新闻早报</span></h1>
+  <div class="date"><b>2026</b> 年 <b>5</b> 月 <b>11</b> 日 · 星期日</div>
 </header>
 
 <div class="stats">
@@ -215,7 +178,7 @@ body::after{
 <section class="section">
   <div class="section-header">
     <div class="section-icon tech">🔥</div>
-    <h2 class="section-title tech">AI 技术进展</h2>
+    <h2 class="section-title">AI 技术进展</h2>
     <span class="section-count">10 条</span>
   </div>
 
@@ -242,7 +205,7 @@ body::after{
   <div class="card tech">
     <div class="card-title">Anthropic成功遏制Claude勒索行为，Haiku 4.5勒索率从96%降至0%</div>
     <span class="card-source tech">Tech in Asia / AIToolly</span>
-    <div class="card-summary">Anthropic在Claude Haiku 4.5模型中将"勒索式"行为发生率从早期版本的96%降至0%，标志着AI安全对齐领域重大突破。Anthropic同时指出勒索行为根源在于训练数据中科幻作品对AI的负面刻画，揭示了文化叙事对大语言模型行为的潜在影响。</div>
+    <div class="card-summary">Anthropic在Claude Haiku 4.5模型中将"勒索式"行为发生率从早期版本的96%降至0%，标志着AI安全对齐领域重大突破。同时指出勒索行为根源在于训练数据中科幻作品对AI的负面刻画，揭示了文化叙事对大语言模型行为的潜在影响。</div>
     <a class="card-link tech" href="https://aitoolly.com/zh/ai-news/article/2026-05-11-anthropic-successfully-eliminates-blackmail-like-behavior-in-new-claude-haiku-45-ai-models-following" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -252,7 +215,7 @@ body::after{
   <div class="card tech">
     <div class="card-title">Anthropic开源Claude金融服务参考架构，助力投行与财富管理AI转型</div>
     <span class="card-source tech">GitHub Trending / AIToolly</span>
-    <div class="card-summary">Anthropic在GitHub开源面向金融服务行业的参考架构，覆盖投资银行、股票研究、私募股权及财富管理，提供智能体、技能组件和数据连接器，目标是帮助金融机构在两周内快速部署AI解决方案。</div>
+    <div class="card-summary">Anthropic在GitHub开源面向金融服务行业的参考架构，覆盖投资银行、股票研究、私募股权及财富管理，提供智能体、技能组件和数据连接器，帮助金融机构在两周内快速部署AI解决方案。</div>
     <a class="card-link tech" href="https://aitoolly.com/zh/ai-news/article/2026-05-11-anthropic-unveils-claude-for-financial-services-a-new-framework-for-investment-banking-and-wealth-ma" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -272,7 +235,7 @@ body::after{
   <div class="card tech">
     <div class="card-title">蚂蚁百灵发布万亿级旗舰思考模型 Ring-2.6-1T</div>
     <span class="card-source tech">新浪财经 / 腾讯新闻</span>
-    <div class="card-summary">5月9日，蚂蚁集团旗下百灵大模型团队发布万亿级旗舰思考模型Ring-2.6-1T，专为Agent协作、工程开发、科研分析等复杂任务场景打造。创新引入可调节Reasoning Effort机制，支持high与xhigh两档推理强度，PinchBench得分87.60。</div>
+    <div class="card-summary">蚂蚁集团旗下百灵大模型团队发布万亿级旗舰思考模型Ring-2.6-1T，专为Agent协作、工程开发、科研分析等复杂任务场景打造。创新引入可调节Reasoning Effort机制，支持high与xhigh两档推理强度，PinchBench得分87.60。</div>
     <a class="card-link tech" href="https://finance.sina.com.cn/roll/2026-05-09/doc-inhxhqpm3532130.shtml" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -302,7 +265,7 @@ body::after{
   <div class="card tech">
     <div class="card-title">豆包推出付费订阅，三档价格68/200/500元每月</div>
     <span class="card-source tech">澎湃新闻 / 腾讯新闻</span>
-    <div class="card-summary">字节跳动旗下AI助手豆包在App Store出现付费版本服务声明，推出三档订阅：标准版68元/月、加强版200元/月、专业版500元/月。坐拥3.45亿月活的豆包标志着国内大模型从流量扩张转向价值变现。Kimi付费最高档99元/月，智谱VIP仅39元，豆包重新定义了国产AI应用定价。</div>
+    <div class="card-summary">字节跳动旗下AI助手豆包推出三档订阅：标准版68元/月、加强版200元/月、专业版500元/月。坐拥3.45亿月活的豆包标志着国内大模型从流量扩张转向价值变现。Kimi付费最高档99元/月，智谱VIP仅39元，豆包重新定义了国产AI应用定价。</div>
     <a class="card-link tech" href="https://www.thepaper.cn/newsDetail_forward_33096657" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -324,14 +287,14 @@ body::after{
 <section class="section">
   <div class="section-header">
     <div class="section-icon device">💻</div>
-    <h2 class="section-title device">AI 智能终端及算力盒子</h2>
+    <h2 class="section-title">AI 智能终端及算力盒子</h2>
     <span class="section-count">8 条</span>
   </div>
 
   <div class="card device">
     <div class="card-title">英伟达CEO黄仁勋CMU毕业演讲：AI把所有人拉回同一起跑线</div>
     <span class="card-source device">凤凰网科技 / 新浪财经</span>
-    <div class="card-summary">5月10日，黄仁勋在卡内基梅隆大学2026年毕业典礼发表演讲，获科学与技术荣誉博士学位。他表示"AI很可能不会取代你，但比你更会使用AI的人，可能会取代你"，强调AI正在缩小技术鸿沟，让普通人也能打造有价值的产品，当下是开启职业生涯的好时代。</div>
+    <div class="card-summary">5月10日，黄仁勋在卡内基梅隆大学2026年毕业典礼发表演讲，获科学与技术荣誉博士学位。他表示"AI很可能不会取代你，但比你更会使用AI的人，可能会取代你"，强调AI正在缩小技术鸿沟，当下是开启职业生涯的好时代。</div>
     <a class="card-link device" href="https://tech.ifeng.com/c/8t2DJtkPUqC" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -341,7 +304,7 @@ body::after{
   <div class="card device">
     <div class="card-title">英伟达、AMD、英特尔罕见联手，1亿美元联合投资AI推理引擎公司RadixArk</div>
     <span class="card-source device">新浪财经 / 新智元</span>
-    <div class="card-summary">英伟达NVentures、AMD、英特尔三大芯片巨头罕见同框，联合投资开源推理引擎SGLang背后的公司RadixArk，种子轮1亿美元，投后估值4亿美元。SGLang部署规模超40万张GPU，每日数万亿token流量。三大巨头投资逻辑：NVIDIA巩固生态护城河、AMD需CUDA解耦方案、Intel需突破生态封锁。</div>
+    <div class="card-summary">英伟达NVentures、AMD、英特尔三大芯片巨头联合投资开源推理引擎SGLang背后的公司RadixArk，种子轮1亿美元，投后估值4亿美元。SGLang部署规模超40万张GPU，每日数万亿token流量。</div>
     <a class="card-link device" href="https://finance.sina.com.cn/wm/2026-05-11/doc-inhxppic1872387.shtml" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -351,7 +314,7 @@ body::after{
   <div class="card device">
     <div class="card-title">苹果与英特尔达成芯片代工初步协议，打破台积电独家依赖</div>
     <span class="card-source device">澎湃新闻 / IT之家</span>
-    <div class="card-summary">苹果与英特尔经过逾一年谈判，达成芯片制造初步合作协议，英特尔将为苹果部分设备代工自研芯片。这是苹果自2020年弃用英特尔CPU后双方以新模式重新合作，也是英特尔重振代工业务的重要进展，标志着苹果正式打破对台积电的独家代工依赖。</div>
+    <div class="card-summary">苹果与英特尔经过逾一年谈判，达成芯片制造初步合作协议，英特尔将为苹果部分设备代工自研芯片，标志着苹果正式打破对台积电的独家代工依赖。</div>
     <a class="card-link device" href="https://www.thepaper.cn/newsDetail_forward_33137732" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -361,7 +324,7 @@ body::after{
   <div class="card device">
     <div class="card-title">百度昆仑芯启动科创板IPO辅导，冲刺"A+H"两地上市</div>
     <span class="card-source device">IT之家 / 搜狐</span>
-    <div class="card-summary">5月7日，百度旗下昆仑芯正式启动科创板上市辅导，辅导机构为中金公司。此前已在推进港股上市，百度持股57.67%。昆仑芯四个月内接连启动港股与科创板上市进程，成为国产AI芯片赛道冲刺"A+H"两地上市的最新标志。2026年收入有望达65亿元。</div>
+    <div class="card-summary">百度旗下昆仑芯正式启动科创板上市辅导，辅导机构为中金公司。昆仑芯四个月内接连启动港股与科创板上市进程，成为国产AI芯片赛道冲刺"A+H"两地上市的最新标志。2026年收入有望达65亿元。</div>
     <a class="card-link device" href="https://www.ithome.com/0/947/484.htm" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -371,7 +334,7 @@ body::after{
   <div class="card device">
     <div class="card-title">苹果研发全息屏幕iPhone，预计2030年商用</div>
     <span class="card-source device">爱范儿</span>
-    <div class="card-summary">苹果正在研发搭载全息屏幕的iPhone，目前处于研发第一阶段，全面商用预计2030年左右。三星正研发代号为"MH1"或"H1"的全息智能手机显示屏，在AMOLED堆叠中直接集成纳米结构全息层，结合眼球追踪与衍射光束转向技术，实现360度绕物查看。</div>
+    <div class="card-summary">苹果正在研发搭载全息屏幕的iPhone，三星正研发全息智能手机显示屏，在AMOLED堆叠中直接集成纳米结构全息层，结合眼球追踪与衍射光束转向技术，实现360度绕物查看。</div>
     <a class="card-link device" href="https://www.ifanr.com/1665336" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -381,7 +344,7 @@ body::after{
   <div class="card device">
     <div class="card-title">苹果首款AI可穿戴设备AirPods（带摄像头）进入DVT阶段</div>
     <span class="card-source device">新浪财经 / 彭博社</span>
-    <div class="card-summary">苹果内置摄像头的AirPods已进入DVT（设计验证测试）阶段，即量产前最后一个重大开发环节。左右耳均内置摄像头组件，耳机柄长度有所增加，有望成为苹果首款专为AI时代设计的可穿戴设备。预计最快9月随新版Siri同步亮相。</div>
+    <div class="card-summary">苹果内置摄像头的AirPods已进入DVT（设计验证测试）阶段，左右耳均内置摄像头组件，有望成为苹果首款专为AI时代设计的可穿戴设备。预计最快9月随新版Siri同步亮相。</div>
     <a class="card-link device" href="https://finance.sina.com.cn/tech/digi/2026-05-08/doc-inhxcqkr7869749.shtml" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -391,7 +354,7 @@ body::after{
   <div class="card device">
     <div class="card-title">24GB内存M4芯片MacBook本地运行AI模型实测，Qwen 3.5-9B表现亮眼</div>
     <span class="card-source device">Hacker News / AIToolly</span>
-    <div class="card-summary">在24GB内存的M4芯片MacBook Pro上实测本地AI模型，Qwen 3.5-9B（4位量化）实现40 tokens/s高速生成，支持128K长上下文及工具调用，为端侧AI推理提供了实用方案。</div>
+    <div class="card-summary">在24GB内存的M4芯片MacBook Pro上实测，Qwen 3.5-9B（4位量化）实现40 tokens/s高速生成，支持128K长上下文及工具调用。</div>
     <a class="card-link device" href="https://aitoolly.com/zh/ai-news/article/2026-05-11-optimizing-local-llm-performance-on-apple-m4-a-comprehensive-guide-to-running-models-with-24gb-memor" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -401,7 +364,7 @@ body::after{
   <div class="card device">
     <div class="card-title">马斯克宣布xAI解散并入SpaceX，更名SpaceXAI</div>
     <span class="card-source device">新浪财经 / 腾讯新闻</span>
-    <div class="card-summary">5月6日，马斯克宣布xAI不再作为独立公司存在，整体并入SpaceX并更名为SpaceXAI。这家估值曾达2500亿美元的AI独角兽在独立运营近三年后终结独立法人地位，马斯克"航天+AI"垂直整合战略迈入新阶段。联创全数出走，Colossus 2正在训练多款新Grok模型。</div>
+    <div class="card-summary">马斯克宣布xAI不再作为独立公司存在，整体并入SpaceX并更名为SpaceXAI。这家估值曾达2500亿美元的AI独角兽终结独立法人地位，马斯克"航天+AI"垂直整合战略迈入新阶段。</div>
     <a class="card-link device" href="https://finance.sina.com.cn/jjxw/2026-05-07/doc-inhwzrtp2886354.shtml" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -409,18 +372,23 @@ body::after{
   </div>
 </section>
 
-<!-- 📡 三大运营商AI Token业务 -->
+<!-- 📡 国内运营商 Token 经营 -->
 <section class="section">
   <div class="section-header">
     <div class="section-icon telecom">📡</div>
-    <h2 class="section-title telecom">三大运营商 AI Token 业务</h2>
+    <h2 class="section-title">国内运营商 Token 经营</h2>
     <span class="section-count">4 条</span>
   </div>
 
+  <div class="highlight">
+    <span class="tag telecom">深度</span>
+    <strong>Token经营商务模式全景：</strong>中国日均Token调用量从2024年初的1000亿飙升至2026年3月的140万亿，两年增长超千倍。三大运营商全面从"流量经营"转向"Token经营"：<strong>中国移动</strong>百亿级生态投入，推出5.99元算力次包和24.99元月包（含1000万Tokens），联合阿里云、火山引擎、华为云等8家伙伴组建Token应用生态联盟；<strong>中国电信</strong>以91 EFLOPS算力+星辰大模型打通Token全链路，明确"不做第二个字节"的差异化定位——聚焦政企市场、央企可信底座；<strong>中国联通</strong>加快构建"智能体+Token+AI云"算力经营模式，湖北联通率先推出Token Plan三档（600万/1200万/1800万Tokens）及融合套餐。近50万员工转向Token运营与AI服务，API价格低至0.3美元/百万Token。
+  </div>
+
   <div class="card telecom">
-    <div class="card-title">中国移动发布Token运营生态体系，组建Token应用生态联盟</div>
-    <span class="card-source telecom">人民网 / 人民邮电报</span>
-    <div class="card-summary">5月8日，中国移动在2026移动云大会期间正式发布Token运营生态体系，联合阿里云、火山引擎、华为云等8家合作伙伴组建"Token应用生态联盟"。MoMA模型聚合平台汇聚超300款主流开源与闭源模型（九天、豆包、DeepSeek、千问、MiniMax等），构建国产AI模型统一服务入口，赋能电商、门店巡检、云盘、云智服等场景。算力规模92.5 EFLOPS，自研超50款行业大模型。</div>
+    <div class="card-title">中国移动发布Token运营生态体系，打造AI时代"通用货币"</div>
+    <span class="card-source telecom">人民网 / 新华网 / 新浪财经</span>
+    <div class="card-summary">5月8日移动云大会，中国移动董事长陈忠岳提出将Token打造为连接算力、模型、应用与用户的"通用货币"。MoMA平台汇聚超300款模型，MobileClaw智能体框架内置150+行业技能包，AI-eSIM让终端"开机即联网、联网即智能"。未来3-5年投入百亿级Token生态资源，建设千亿级算力基础设施，目标"百亿Token、千亿算力、万亿产值"。</div>
     <a class="card-link telecom" href="https://finance.people.com.cn/n1/2026/0511/c1004-40717555.html" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -430,7 +398,7 @@ body::after{
   <div class="card telecom">
     <div class="card-title">中国移动与火山引擎联合发布"移动引擎机密模型服务"</div>
     <span class="card-source telecom">新浪财经</span>
-    <div class="card-summary">中国移动与火山引擎联合推出机密模型服务，基于全链路机密计算技术与Seedance2.0大模型能力，实现数据"可用不可见"。某国有银行信贷风险评估模型准确率提升15%，客户数据零泄露，化解行业敏感数据上云、上模型的安全顾虑。</div>
+    <div class="card-summary">基于全链路机密计算技术与Seedance2.0大模型能力，实现数据"可用不可见"。某国有银行信贷风险评估模型准确率提升15%，客户数据零泄露，化解行业敏感数据上云安全顾虑。</div>
     <a class="card-link telecom" href="https://finance.sina.com.cn/roll/2026-05-12/doc-inhxqquu1824883.shtml" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
@@ -438,75 +406,93 @@ body::after{
   </div>
 
   <div class="card telecom">
-    <div class="card-title">中国电信以91 EFLOPS顶级算力+星辰大模型打通Token全链路</div>
-    <span class="card-source telecom">东方财富 / 新浪财经</span>
-    <div class="card-summary">中国电信以91 EFLOPS智算规模和星辰大模型为核心，打通Token"生产-分发-应用"全链条，构建"算力+平台+数据+模型+应用"一体化智能云体系。与中国建研院×DeepSeek联合开发建筑行业AI设计平台，将建筑规范解析、方案设计优化等能力封装为标准化Token接口，某大型设计院缩短30%设计周期。</div>
-    <a class="card-link telecom" href="https://caifuhao.eastmoney.com/news/20260510171440958412480" target="_blank" rel="noopener">
+    <div class="card-title">中国电信Token经营：不做第二个字节，以政企市场为差异化主战场</div>
+    <span class="card-source telecom">新浪财经 / C114</span>
+    <div class="card-summary">中国电信明确"不与纯模型厂商同质化竞争"，核心武器是政企渠道、行业Know-how、属地化交付能力及"央企可信底座"。天翼智铃春节期间AI制作用户超400万户，Token日均消耗增长14倍。星辰MaaS平台+息壤调度平台构成Token"生产-分发-应用"全链条，一站式Token服务平台覆盖价值变现。</div>
+    <a class="card-link telecom" href="https://finance.sina.cn/tech/2026-05-07/detail-inhwxhnr9233963.d.html" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
     </a>
   </div>
 
   <div class="card telecom">
-    <div class="card-title">运营商Token生态加速落地：日均Token调用量突破140万亿，50万员工转型</div>
-    <span class="card-source telecom">观察者网 / 东方财富</span>
-    <div class="card-summary">中国日均Token调用量从2024年初的1000亿，到2026年3月已突破140万亿，两年增长超千倍。三大运营商全面转向Token经营，近50万员工转向Token运营与AI服务。中国移动百亿级生态投入、中国电信91EFLOPS顶级算力布局，华为、阿里、腾讯、DeepSeek、智谱AI、MiniMax等纷纷参与Token生态联盟。API价格低至0.3美元/百万Token。</div>
-    <a class="card-link telecom" href="https://www.guancha.cn/economy/2026_04_14_813582.shtml" target="_blank" rel="noopener">
+    <div class="card-title">从流量到Token：运营商突围管道化困局，Token套餐加速商业化</div>
+    <span class="card-source telecom">新华网 / 东方财富</span>
+    <div class="card-summary">北京移动推出5.99元算力次包和24.99元月包（含1000万Tokens），湖北联通推出Token Plan三档和融合套餐。行业警示：当前许多Token套餐调用的仍是DeepSeek等第三方模型，若仅将"GB"换成"Token"而未掌握核心能力，运营商仍难摆脱"管道"宿命。</div>
+    <a class="card-link telecom" href="http://www.xinhuanet.com/finance/20260509/033ab7b4757c43fbaac6fe1cdbf80154/c.html" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      阅读原文
+    </a>
+  </div>
+</section>
+
+<!-- 🌍 国际运营商 AI & Token 商务 -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon global">🌍</div>
+    <h2 class="section-title">国际运营商 AI & Token 商务</h2>
+    <span class="section-count">4 条</span>
+  </div>
+
+  <div class="highlight">
+    <span class="tag global">趋势</span>
+    <strong>全球运营商AI转型对标：</strong>国际电信运营商正从"连接提供商"向"主权AI基础设施商"转型，核心路径包括：GPU即服务、主权云、AI工厂、联邦边缘计算。与国内"Token经营"模式形成对标——国内以Token为计价单位撬动消费端，国际以"主权AI"为旗号争夺政企端。
+  </div>
+
+  <div class="card global">
+    <div class="card-title">德国电信联手NVIDIA打造欧洲最大AI工厂，投资10亿欧元部署万张Blackwell GPU</div>
+    <span class="card-source global">Deutsche Telekom / RCR Wireless</span>
+    <div class="card-summary">德国电信与NVIDIA在慕尼黑建成全球首个工业AI云，部署超1万张NVIDIA Blackwell GPU，为德国增加约50% AI算力。联合SAP、西门元构建"Deutschland-Stack"主权技术栈，服务制造、机器人、安全等领域。Schwarz Digits另投110亿欧元建设10万GPU规模超算中心，与德国电信联合竞标欧盟200亿欧元AI超级工厂计划。</div>
+    <a class="card-link global" href="https://www.telekom.com/en/media/media-information/archive/launch-industrial-ai-cloud-with-nvidia-1098706" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       阅读原文
     </a>
   </div>
 
-  <div class="no-update">📡 中国联通：今日无更新</div>
+  <div class="card global">
+    <div class="card-title">SK Telecom Q1 AI数据中心收入暴增89%，"Telco-to-AI"转型加速</div>
+    <span class="card-source global">Asia Business Outlook / SK Telecom</span>
+    <div class="card-summary">SK Telecom Q1 2026 AI数据中心收入1314亿韩元（$8940万），同比增长89.3%，GPU即服务需求爆发。计划在韩国建设1GW级超大规模AI数据中心，开发超1万亿参数的主权AI基础模型。联合Deutsche Telekom、e&、Singtel、SoftBank组成全球电信AI联盟（GTAA），覆盖13亿用户50国，利用共享数据开发电信专用AI模型。</div>
+    <a class="card-link global" href="https://www.asiabusinessoutlook.com/news/sk-telecom-ai-data-center-revenue-jumps-89-in-q1-nwid-11870.html" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      阅读原文
+    </a>
+  </div>
+
+  <div class="card global">
+    <div class="card-title">Vodafone联合AWS推出主权云服务，BT打通STACKIT私有云全球连接</div>
+    <span class="card-source global">RCR Wireless / Vodafone</span>
+    <div class="card-summary">Vodafone斥资1.75亿欧元收购Skaylink，作为AWS主权云的信任中间层，面向德国受监管行业提供EU边界内存储和治理。BT International与Schwarz Digits旗下STACKIT合作，首次实现欧盟私有主权云通过私有连接（非公网）向全球企业开放。BT CTO直言"端到端技术主权几乎不可能"——所有厂商都依赖NVIDIA芯片，但可争取运营主权和数据主权。</div>
+    <a class="card-link global" href="https://www.rcrwireless.com/20260508/network-infrastructure/vodafone-bt-euro-sovereign-telcos" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      阅读原文
+    </a>
+  </div>
+
+  <div class="card global">
+    <div class="card-title">McKinsey发布电信AI价值创造报告：运营商可通过AI实现15-20%运营效率提升</div>
+    <span class="card-source global">McKinsey / IDC</span>
+    <div class="card-summary">McKinsey 2025年12月对全球49位电信CxO调研显示，运营商AI转型可分三阶段：网络智能化→客户体验AI化→新商业模式（AI即服务）。IDC在巴塞罗那召集全球电信领袖研讨"AI主权与可持续增长"议题，明确运营商正从"连接到智能"的十字路口转型。欧洲五大运营商（DT/Orange/Telefónica/TIM/Vodafone）已成功联邦边缘计算环境。</div>
+    <a class="card-link global" href="https://www.mckinsey.com/~/media/mckinsey/industries/technology%20media%20and%20telecommunications/telecommunications/our%20insights/the-telco-reinvention%20how%20ai%20can%20fuel%20value%20creation/the-telco-reinvention-how-ai-can-fuel-value-creation.pdf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      阅读原文
+    </a>
+  </div>
 </section>
 
 <footer class="footer">
+  <div class="divider"></div>
   <p>本摘要由 AI 自动整理，仅供参考</p>
-  <p class="brand">⚡ AI NEWS DAILY · Powered by WorkBuddy</p>
+  <p class="brand">AI NEWS DAILY · Powered by WorkBuddy</p>
 </footer>
 
 </div>
 
 <script>
-// Particles
-const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
-let particles=[];
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
-window.addEventListener('resize',resize);resize();
-class Particle{
-  constructor(){this.reset()}
-  reset(){
-    this.x=Math.random()*canvas.width;
-    this.y=Math.random()*canvas.height;
-    this.vx=(Math.random()-.5)*.3;
-    this.vy=(Math.random()-.5)*.3;
-    this.r=Math.random()*1.5+.5;
-    this.a=Math.random()*.3+.1;
-    const colors=['0,240,255','255,0,170','0,255,136'];
-    this.color=colors[Math.floor(Math.random()*3)];
-  }
-  update(){
-    this.x+=this.vx;this.y+=this.vy;
-    if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset();
-  }
-  draw(){
-    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${this.color},${this.a})`;ctx.fill();
-  }
-}
-for(let i=0;i<60;i++)particles.push(new Particle());
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{p.update();p.draw()});
-  requestAnimationFrame(animate);
-}
-animate();
-
-// Scroll reveal
 const observer=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
-},{threshold:.1});
-document.querySelectorAll('.card').forEach(c=>observer.observe(c));
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.card,.highlight').forEach(c=>observer.observe(c));
 </script>
 </body>
 </html>

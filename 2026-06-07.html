@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 新闻早报 | 2026-06-07</title>
+    <style>
+        :root {
+            --bg: #f8f9fc;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #6b7280;
+            --tech: #4f6ef7;
+            --device: #e8477a;
+            --telecom: #0db882;
+            --global: #8b5cf6;
+            --radius: 16px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --gradient-tech: linear-gradient(135deg, #4f6ef7 0%, #6b8cff 100%);
+            --gradient-device: linear-gradient(135deg, #e8477a 0%, #ff6b9d 100%);
+            --gradient-telecom: linear-gradient(135deg, #0db882 0%, #3dd9a0 100%);
+            --gradient-global: linear-gradient(135deg, #8b5cf6 0%, #a78bff 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height:1.7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-tech);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #4f6ef7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .date {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+        .card:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--bg);
+        }
+        .section-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .section-icon.tech { background: var(--gradient-tech); }
+        .section-icon.device { background: var(--gradient-device); }
+        .section-icon.telecom { background: var(--gradient-telecom); }
+        .section-icon.global { background: var(--gradient-global); }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .section-title.tech { color: var(--tech); }
+        .section-title.device { color: var(--device); }
+        .section-title.telecom { color: var(--telecom); }
+        .section-title.global { color: var(--global); }
+        .news-item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--bg);
+        }
+        .news-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .news-item:first-child { padding-top: 0; }
+        .news-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .news-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .news-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        .tag.tech { background: rgba(79,110,247,0.1); color: var(--tech); }
+        .tag.device { background: rgba(232,71,122,0.1); color: var(--device); }
+        .tag.telecom { background: rgba(13,184,130,0.1); color: var(--telecom); }
+        .tag.global { background: rgba(139,92,246,0.1); color: var(--global); }
+        .highlight {
+            background: linear-gradient(135deg, rgba(79,110,247,0.06) 0%, rgba(139,92,246,0.06) 100%);
+            border-left: 4px solid var(--tech);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+        .highlight h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--tech);
+        }
+        .highlight p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .highlight.green {
+            background: linear-gradient(135deg, rgba(13,184,130,0.06) 0%, rgba(79,110,247,0.06) 100%);
+            border-left: 4px solid var(--telecom);
+        }
+        .highlight.green h4 { color: var(--telecom); }
+        .highlight.purple {
+            background: linear-gradient(135deg, rgba(139,92,246,0.06) 0%, rgba(232,71,122,0.06) 100%);
+            border-left: 4px solid var(--global);
+        }
+        .highlight.purple h4 { color: var(--global); }
+        .telecom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .telecom-table th, .telecom-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg);
+        }
+        .telecom-table th {
+            background: rgba(13,184,130,0.08);
+            color: var(--telecom);
+            font-weight: 600;
+        }
+        .telecom-table tr:last-child td { border-bottom: none; }
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .footer a { color: var(--tech); text-decoration: none; }
+        .source-link {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .source-link:hover { color: var(--tech); text-decoration: underline; }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 26px; }
+            .card { padding: 20px; }
+            .telecom-table { font-size: 12px; }
+            .telecom-table th, .telecom-table td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">AI News Daily</div>
+            <h1>AI 新闻早报</h1>
+            <p class="date">2026 年 6 月 7 日 · 星期日</p>
+        </div>
+
+        <!-- AI技术进展 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon tech">🤖</div>
+                <div class="section-title tech">AI 技术进展</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">阿里千问全面开放第三方 Agent 和 Skill，瑞幸、肯德基、东方航空首批接入</div>
+                <div class="news-desc">6月3日，阿里宣布旗下AI应用千问面向第三方Agent（智能体）和Skill（技能）全面开放。瑞幸咖啡、肯德基、蜜雪冰城、东方航空为首批接入企业。企业可在千问App中运营品牌Agent，自定义人设与服务边界，以对话形式提供产品服务。Agent具备<strong>记忆与主动规划能力</strong>，可主动推送行程提醒、权益到期、复购推荐等。千问一季度月活增加1.26亿人次，跃居国内AI应用月活第二位——阿里正将千问打造为AI时代的"超级入口"。</div>
+                <div class="news-meta">
+                    <span class="tag tech">阿里巴巴</span>
+                    <span class="tag tech">千问</span>
+                    <span class="tag tech">Agent开放</span>
+                    <a class="source-link" href="https://www.caixin.com/2026-06-03/102450660.html" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">🔥 Alphabet 融资规模上调至 847.5 亿美元，史上最大 AI 基建投资——伯克希尔百亿入局</div>
+                <div class="news-desc">因投资者需求强劲，谷歌母公司Alphabet将原定800亿美元股权融资上调至<strong>847.5亿美元</strong>（约合5700亿人民币），为全球AI赛道最大融资案例。结构拆分：承销公开发售A类/C类股347.5亿美元 + 伯克希尔·哈撒韦私募100亿美元 + 2026年Q3启动的400亿美元按市价发行计划。CEO皮查伊明确："算力瓶颈是当下最大挑战"。2026年四大科技巨头（Alphabet+微软+Meta+亚马逊）资本支出合计超<strong>7250亿美元</strong>，分析师预测2027年行业总支出或突破<strong>1万亿美元</strong>。</div>
+                <div class="news-meta">
+                    <span class="tag tech">Alphabet</span>
+                    <span class="tag tech">847.5亿美元</span>
+                    <span class="tag tech">AI基建</span>
+                    <a class="source-link" href="https://finance.sina.com.cn/stock/usstock/c/2026-06-04/doc-iniahain0305704.shtml" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">智谱 AI 港股上市不足半年火速启动科创板 IPO：拟募资 150 亿，A+H 双上市架构浮出水面</div>
+                <div class="news-desc">6月1日，智谱AI（02513.HK）在港交所公告，董事会通过建议A股发行并在上交所科创板上市的决议，拟募集资金<strong>150亿元</strong>（120亿投入AI通用基座大模型、20亿投入MaaS平台、10亿补充流动资金）。1月8日智谱以"大模型第一股"登陆港股，发行价116.2港元/股，上市后一路飙涨。东方财富报道揭示其巨亏困局：2025年净亏损超150亿元。但资本市场对AI的狂热推高其市值突破6500亿港元。智谱和MiniMax将于<strong>6月8日</strong>正式纳入恒生科技指数，成为首批纯AI大模型成分股。</div>
+                <div class="news-meta">
+                    <span class="tag tech">智谱AI</span>
+                    <span class="tag tech">科创板</span>
+                    <span class="tag tech">A+H</span>
+                    <a class="source-link" href="https://www.stcn.com/article/detail/3945111.html" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">大模型 IPO 竞速白热化：阶跃星辰 6 月底前交表港股（基石 100 亿美元），月之暗面启动 VIE 拆除</div>
+                <div class="news-desc">AI"六小虎"上市窗口全面打开。阶跃星辰红筹架构已拆除，注册资本增至6362万元，计划<strong>6月30日前</strong>向港交所递交IPO申请（A1表），基石定价目标约<strong>100亿美元</strong>，目标年底前完成上市，Pre-IPO轮引入中兴通讯、华勤技术、龙旗科技等终端硬件产业链资本。同期，月之暗面已通知股东正式启动VIE及红筹架构拆除工作，为赴港IPO扫清障碍。市场预计2026年底可能出现智谱、MiniMax、阶跃星辰三只大模型港股齐聚的罕见场景。</div>
+                <div class="news-meta">
+                    <span class="tag tech">阶跃星辰</span>
+                    <span class="tag tech">月之暗面</span>
+                    <span class="tag tech">港股IPO</span>
+                    <a class="source-link" href="https://k.sina.com.cn/article_1838672663_6d97eb1702001mh1c.html" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">恒生科技指数纳入智谱 + MiniMax，6 月 8 日正式生效——AI 原生力量登台</div>
+                <div class="news-desc">6月5日收盘后，恒生科技指数完成重大结构性调整：智谱（02513.HK，初始权重0.53%）和MiniMax-W（00100.HK/稀宇科技，权重0.36%）纳入，金蝶国际和金山软件被剔除。两只个股成为恒生科技指数历史上<strong>首批纯AI大模型成分股</strong>。跟踪该指数的ETF产品规模合计约<strong>2670亿元</strong>，被动调仓资金已在6月5-6日集中流入。分析师指出，AI原生企业的加入意味着港股科技股的估值锚点正从"互联网平台"向"AI基础设施"迁移。</div>
+                <div class="news-meta">
+                    <span class="tag tech">恒生科技指数</span>
+                    <span class="tag tech">ETF调仓</span>
+                    <span class="tag tech">AI成分股</span>
+                    <a class="source-link" href="http://finance.sina.com.cn/jjxw/2026-06-04/doc-iniafmmw9461751.shtml" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>📊 本周 AI 行业关键数据：资本狂潮+指数重构+Agent入口争夺</h4>
+                <p>Alphabet<strong>847.5亿美元</strong>融资刷新全球AI最大单笔记录；四巨头2026年资本支出合计<strong>7250亿美元</strong>，2027年或破万亿；智谱科创板IPO拟募<strong>150亿</strong>，阶跃星辰港股基石目标<strong>100亿美元</strong>；恒生科技指数ETF被动调仓规模约<strong>2670亿元</strong>——<strong>资本正在从"概念投票"全面转向"基础设施定价"</strong>。</p>
+            </div>
+        </div>
+
+        <!-- AI智能终端 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon device">📱</div>
+                <div class="section-title device">AI 智能终端 / 算力盒子</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">西雅图通过一年禁令暂停新建 AI 数据中心，亚马逊工程师公开支持监管——AI 基建遭遇"邻避运动"</div>
+                <div class="news-desc">6月5日，西雅图市议会通过<strong>为期一年的AI数据中心建设禁令</strong>，以制定监管规则。值得关注的是，三名亚马逊软件工程师公开在听证会上支持禁令——这在劳工组织史上极为罕见。亚马逊今年计划投入<strong>2000亿美元</strong>用于数据中心等AI基建。西雅图作为亚马逊和微软总部所在地，AI数据中心的电力消耗、水资源占用和社区影响已成为本地政治焦点。GeekWire评论：AI基建的"邻避效应"（NIMBY）正从环保议题升级为社会治理议题。</div>
+                <div class="news-meta">
+                    <span class="tag device">西雅图</span>
+                    <span class="tag device">AI数据中心</span>
+                    <span class="tag device">监管禁令</span>
+                    <a class="source-link" href="https://www.yahoo.com/news/politics/articles/amazon-workers-back-seattle-ai-124933068.html" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">豆包宣布推出专业版：软件开发/数据分析/金融分析/科学研究一站式 AI 服务</div>
+                <div class="news-desc">字节跳动旗下AI应用豆包宣布计划推出<strong>豆包专业版</strong>，涵盖软件开发、数据分析、专业设计、流程自动化、金融分析和科学研究六大专业服务模块。目前仍处于测试阶段，搜索问答、写作生图、语音和视频对话等大众功能继续保持免费。分析指出，豆包专业版直接对标OpenAI的ChatGPT Plus和微软Copilot Pro，字节正试图从C端流量优势切入B端专业场景，与阿里千问形成差异化竞争——千问走"平台开放"路线，豆包走"专业垂直"路线。</div>
+                <div class="news-meta">
+                    <span class="tag device">豆包</span>
+                    <span class="tag device">专业版</span>
+                    <span class="tag device">字节跳动</span>
+                    <a class="source-link" href="https://zglg.work/ai/today/2026-06-07" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">端侧 AI 芯片五大国产路线全景解析：SoC/存储/传感/模组全链条重构</div>
+                <div class="news-desc">IT之家发布2026年端侧AI芯片选型指南，梳理五大国产技术路线。行业数据显示，AI推理计算需求已达训练需求的<strong>4-5倍</strong>，推理算力租赁价格半年涨<strong>40%</strong>。端侧AI芯片并非单一芯片概念，而是由端侧SoC、存储芯片、传感芯片和智能模组组成的完整体系。主流架构大概率不是纯云端或纯端侧，而是<strong>端云协同</strong>——手机推动端侧AI普及，PC验证生产力价值，汽车和机器人打开高单价市场。</div>
+                <div class="news-meta">
+                    <span class="tag device">端侧AI</span>
+                    <span class="tag device">国产芯片</span>
+                    <span class="tag device">端云协同</span>
+                    <a class="source-link" href="https://www.ithome.com/0/952/930.htm" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="highlight" style="border-left-color: var(--device);">
+                <h4 style="color: var(--device);">📱 AI 基建的"供需矛盾"正在全球爆发</h4>
+                <p>Alphabet<strong>847.5亿美元</strong>砸向算力基建的同时，西雅图却通过<strong>禁令</strong>拒绝新建数据中心——供给端的土地/电力/社区阻力与需求端的资本狂热形成尖锐矛盾。全球AI推理需求已达训练的<strong>4-5倍</strong>，而基础设施落地的"最后一公里"正遭遇前所未有的监管和社会阻力。<strong>算力的政治经济学</strong>正在取代纯技术竞争，成为AI产业的新变量。</p>
+            </div>
+        </div>
+
+        <!-- 国内运营商Token经营 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon telecom">📡</div>
+                <div class="section-title telecom">国内运营商 Token 经营</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">🔥 人民日报刊发评论员文章：Token 获"数字硬通货"社会认可，词元渗透经济社会"毛细血管"</div>
+                <div class="news-desc">6月4日，《人民日报》第5版刊发评论员观察文章《培厚中国创新的文化优势》，以词元（Token）为核心案例论证创新文化土壤。文章指出三大新趋势：① <strong>以词元为资源</strong>成为新现象——有人向学校捐赠词元，企业将发放词元作为员工激励；② <strong>让词元更好用</strong>成为新动向——三大运营商纷纷推出词元套餐产品；③ 词元逐渐渗透到经济社会运行的"毛细血管"，社会认可度不断提高。这是继新华网系统性梳理"词元"计费单元后，又一家央媒给予Token战略级定位。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">人民日报</span>
+                    <span class="tag telecom">词元</span>
+                    <span class="tag telecom">央媒定调</span>
+                    <a class="source-link" href="http://bbs1.people.com.cn/post/1/1/2/178098245.html" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">上海电信 Token 套餐全解析：1 元 = 25 万 Token，阶梯优惠最高 6.5 折，话费账单直接支付</div>
+                <div class="news-desc">上海电信推出详细Token套餐方案：按量计费模式下1元兑换25万Token（以Kimi K2.5模型为例），阶梯优惠购买250万/5000万Token可享最高<strong>6.5折</strong>（活动截止2026年6月30日）。新用户可领取<strong>2500万Token免费体验额度</strong>（限量5000份，30天有效）。关键创新：Token消耗直接纳入<strong>话费账单</strong>支付，无需额外开通——AI算力消耗与通信消费实现"一号通用、无感支付"。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">上海电信</span>
+                    <span class="tag telecom">Token套餐</span>
+                    <span class="tag telecom">话费支付</span>
+                    <a class="source-link" href="https://mbd.baidu.com/newspage/data/dtlandingsuper?nid=dt_3298580080019298995" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">三大运营商词元产品集体上架中国算力平台：标准统一，场景落地加速</div>
+                <div class="news-desc">6月3日，中国信通院宣布三大运营商"词元产品"正式登陆中国算力平台·算力超市。继新华网定调、人民日报背书后，上架国家算力平台标志着Token从"通信产品"升级为"国家数字基础设施标配"。中国日均Token消耗量从2024年初的1000亿跃升至2026年3月的140万亿，预计年底达300-400万亿。China Daily英文报道向国际社会传递信号：中国运营商正将14亿用户基础转化为Token消费场景。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">中国信通院</span>
+                    <span class="tag telecom">算力平台</span>
+                    <span class="tag telecom">140万亿/日</span>
+                    <a class="source-link" href="https://global.chinadaily.com.cn/a/202605/19/WS6a0bc28ba310d6866eb49659.html" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="highlight green">
+                <h4>📊 Token 正式进入"央媒定调 + 平台标准化 + 消费者渗透"三重加速期</h4>
+                <table class="telecom-table">
+                    <tr>
+                        <th>里程碑</th>
+                        <th>时间</th>
+                        <th>标志性事件</th>
+                    </tr>
+                    <tr>
+                        <td>国家命名</td>
+                        <td>2026年3月</td>
+                        <td>国家数据局正式定名"词元"，赋予可计量可定价可交易属性</td>
+                    </tr>
+                    <tr>
+                        <td>央媒背书</td>
+                        <td>2026年6月</td>
+                        <td>新华网专题 + 人民日报评论员文章连续定调</td>
+                    </tr>
+                    <tr>
+                        <td>平台标准化</td>
+                        <td>2026年6月</td>
+                        <td>三大运营商词元产品上架中国算力平台</td>
+                    </tr>
+                    <tr>
+                        <td>消费者场景</td>
+                        <td>2026年6月</td>
+                        <td>话费支付Token、捐赠词元、企业员工Token激励</td>
+                    </tr>
+                </table>
+                <p style="margin-top:10px;">💡 从"极客圈层"到"人民日报头条"——Token正经历<strong>社会化加速</strong>。日均调用量140万亿，年底预计300-400万亿，两年增长超千倍。运营商通信服务收入连续下滑（2026Q1同比-1.1%），Token经营已成为摆脱"管道化困局"的<strong>核心战略支点</strong>。</p>
+            </div>
+        </div>
+
+        <!-- 国际运营商 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon global">🌐</div>
+                <div class="section-title global">国际运营商 AI & Token 商务</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">欧盟公布"欧洲科技主权一揽子计划"：芯片法案 2.0 + 云与 AI 发展法，四大领域全面脱美</div>
+                <div class="news-desc">6月3-4日，欧盟委员会正式提出"European Technological Sovereignty Package"，核心方案包括：① 《芯片法案2.0》——强化欧洲半导体自主；② 《云与人工智能发展法》——降低对美国云服务的依赖；③ 开源技术增强数字自主能力；④ 能源系统数字化推进。方案明确在云计算、AI、半导体等<strong>高度敏感的公共采购项目中优先考虑欧洲本土企业</strong>。央视、财联社、新浪等国内主流媒体同步报道。</div>
+                <div class="news-meta">
+                    <span class="tag global">欧盟</span>
+                    <span class="tag global">技术主权</span>
+                    <span class="tag global">芯片法案2.0</span>
+                    <a class="source-link" href="https://finance.sina.com.cn/tech/roll/2026-06-04/doc-iniahaip2454115.shtml" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">🔥 美大使紧急喊话"美国赢中国才重要"——欧盟技术主权计划触发跨大西洋裂痕</div>
+                <div class="news-desc">6月7日法新社报道，美国驻欧盟大使就欧盟技术主权计划紧急表态："美国赢中国才重要，欧盟别想着自主"。分析认为，该计划一旦落地，受影响最大的是目前主导欧洲数字服务市场的<strong>美国科技公司</strong>——微软Azure、AWS、谷歌云在欧洲的市场份额合计超60%。欧盟中国商会回应称，注意到该计划涵盖中资企业密切相关的半导体、AI、云服务领域，希望增强技术韧性的举措<strong>不以损害国际贸易与投资为代价</strong>。地缘科技博弈正从"中美对决"升级为"中美欧三方拉锯"。</div>
+                <div class="news-meta">
+                    <span class="tag global">美国大使</span>
+                    <span class="tag global">跨大西洋</span>
+                    <span class="tag global">地缘科技</span>
+                    <a class="source-link" href="https://finance.sina.com.cn/wm/2026-06-07/doc-iniapryy6776374.shtml" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">NVIDIA + 全球电信巨头联合承诺构建 6G AI 原生开放安全平台</div>
+                <div class="news-desc">2月底NVIDIA联合Booz Allen、BT Group、Cisco、<strong>Deutsche Telekom</strong>、Ericsson、MITRE、Nokia等全球电信和科技巨头，共同承诺在<strong>开放、安全的AI原生平台上构建6G</strong>。SK Telecom CEO Jung Jaihun在MWC26期间主持AIDC大会，提出"Sovereign AI Package"战略，并与e&、Orange、Deutsche Telekom商讨数据主权AI合作。从5G到6G，运营商的角色正从"管道提供者"向"AI基础设施运营者"跃迁——网络即AI、AI即网络的范式正在成形。</div>
+                <div class="news-meta">
+                    <span class="tag global">NVIDIA</span>
+                    <span class="tag global">6G</span>
+                    <span class="tag global">AI原生网络</span>
+                    <a class="source-link" href="https://nvidianews.nvidia.com/news/nvidia-and-global-telecom-leaders-commit-to-build-6g-on-open-and-secure-ai-native-platforms" target="_blank">来源 ↗</a>
+                </div>
+            </div>
+            <div class="highlight purple">
+                <h4>🌍 全球运营商 AI 路径：主权、基建与地缘的三重博弈</h4>
+                <p>① <strong>欧洲主权路径</strong>：欧盟"技术主权一揽子计划"直指美国云厂商60%+市场份额，芯片法案2.0+云与AI发展法同步推进——美国大使紧急喊话暴露跨大西洋数字联盟深层裂痕；② <strong>网络AI化路径</strong>：NVIDIA联合全球运营商布局6G AI原生平台，SKT推进主权AI Package——运营商正从管道提供者转型为AI基础设施运营商；③ <strong>中国Token路径</strong>：央媒连续定调+国家算力平台+话费支付+企业捐赠——中国运营商正以14亿用户规模将Token推向"社会基础设施"级别。<strong>三条路径的本质相同：在AI价值链上抢占有利位置，避免沦为"哑管道"。</strong></p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>AI News Daily · 每日 9:00 自动生成</p>
+            <p style="margin-top: 4px;">数据来源：财新网、新浪财经、IT之家、东方财富、人民日报、新华网、China Daily、Yahoo News、NVIDIA News、zglg.work 等</p>
+            <p style="margin-top: 8px;"><a href="https://suranus.github.io/ai-news-daily/">🏠 返回首页</a></p>
+        </div>
+    </div>
+</body>
+</html>
