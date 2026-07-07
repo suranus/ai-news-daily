@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 新闻早报 | 2026-07-07</title>
+    <style>
+        :root {
+            --bg: #f8f9fc;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #6b7280;
+            --tech: #4f6ef7;
+            --device: #e8477a;
+            --telecom: #0db882;
+            --global: #8b5cf6;
+            --radius: 16px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --gradient-tech: linear-gradient(135deg, #4f6ef7 0%, #6b8cff 100%);
+            --gradient-device: linear-gradient(135deg, #e8477a 0%, #ff6b9d 100%);
+            --gradient-telecom: linear-gradient(135deg, #0db882 0%, #3dd9a0 100%);
+            --gradient-global: linear-gradient(135deg, #8b5cf6 0%, #a78bff 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-tech);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #4f6ef7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .date {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+        .header .subtitle {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+        .card:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--bg);
+        }
+        .section-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .section-icon.tech { background: var(--gradient-tech); }
+        .section-icon.device { background: var(--gradient-device); }
+        .section-icon.telecom { background: var(--gradient-telecom); }
+        .section-icon.global { background: var(--gradient-global); }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .section-title.tech { color: var(--tech); }
+        .section-title.device { color: var(--device); }
+        .section-title.telecom { color: var(--telecom); }
+        .section-title.global { color: var(--global); }
+        .news-item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--bg);
+        }
+        .news-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .news-item:first-child { padding-top: 0; }
+        .news-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .news-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .news-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        .tag.tech { background: rgba(79,110,247,0.1); color: var(--tech); }
+        .tag.device { background: rgba(232,71,122,0.1); color: var(--device); }
+        .tag.telecom { background: rgba(13,184,130,0.1); color: var(--telecom); }
+        .tag.global { background: rgba(139,92,246,0.1); color: var(--global); }
+        .highlight {
+            background: linear-gradient(135deg, rgba(79,110,247,0.06) 0%, rgba(139,92,246,0.06) 100%);
+            border-left: 4px solid var(--tech);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+        .highlight h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--tech);
+        }
+        .highlight p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .telecom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .telecom-table th, .telecom-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg);
+        }
+        .telecom-table th {
+            background: rgba(13,184,130,0.08);
+            color: var(--telecom);
+            font-weight: 600;
+        }
+        .telecom-table tr:last-child td { border-bottom: none; }
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .footer a { color: var(--tech); text-decoration: none; }
+        .source-link {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .source-link:hover { color: var(--tech); text-decoration: underline; }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 26px; }
+            .card { padding: 20px; }
+            .telecom-table { font-size: 12px; }
+            .telecom-table th, .telecom-table td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">AI News Daily</div>
+            <h1>AI 新闻早报</h1>
+            <p class="date">2026 年 7 月 7 日 · 星期二</p>
+            <p class="subtitle">GPT-5.6 发布日 · Claude Fable5 退订 · 大厂 AI 大一统</p>
+        </div>
+
+        <!-- AI技术进展 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon tech">🤖</div>
+                <div class="section-title tech">AI 技术进展</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">OpenAI GPT-5.6 三大模型今日发布，精准卡位截杀 Claude</div>
+                <div class="news-desc">Codex 底层代码泄露 GPT-5.6 Sol、Terra、Luna 三大子模型。Sol 比 Claude Fable5 便宜两倍以上，Terra 实测同一任务仅消耗 13% 额度，全新「速度拨盘」让用户自由调整速度与质量。Sol Ultra 对标 Fable5 旗舰性能，发布时间精准定在 7 月 7 日——恰好是 Anthropic 移除 Fable5 订阅访问的当天。</div>
+                <div class="news-meta">
+                    <span class="tag tech">GPT-5.6</span>
+                    <span class="tag tech">OpenAI</span>
+                    <span class="tag tech">大模型竞赛</span>
+                    <a class="source-link" href="https://www.36kr.com/p/3880971920584962" target="_blank">36氪 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Anthropic 今日起移除 Claude Fable5 订阅访问，订阅制红利终结</div>
+                <div class="news-desc">7 月 7 日起，Anthropic 从 Pro/Max/Team 订阅中移除性能最强的 Claude Fable5，转为按量计费。原因是全球需求远超服务器承载，社区对"变相加价"表达巨大不满。官方承诺暂定，服务器扩容后恢复，但未给出时间表。</div>
+                <div class="news-meta">
+                    <span class="tag tech">Anthropic</span>
+                    <span class="tag tech">Claude</span>
+                    <span class="tag tech">商业模式</span>
+                    <a class="source-link" href="https://www.chinaz.com/ainews/29368.shtml" target="_blank">站长之家 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">腾讯混元 3 正式版：搜索追平 GPT-5.5，幻觉率减半</div>
+                <div class="news-desc">姚顺雨加入腾讯后首个重量级产品落地。混元 3 总参 295B、单次激活 21B，80 层 GQA 分组注意力，192 选 top-8 专家系统，上下文 256K。官方将提升归功于后训练数据质量与 RL 算力规模扩大，有效参数量仅为 GLM 5.2 的一半。</div>
+                <div class="news-meta">
+                    <span class="tag tech">腾讯</span>
+                    <span class="tag tech">混元大模型</span>
+                    <span class="tag tech">MoE</span>
+                    <a class="source-link" href="https://txtmix.com/posts/news/ai-morning-news-2026-07-07/" target="_blank">Text Matrix ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">ICML 2026：清华黄高团队获杰出论文，A3C 获时间检验奖</div>
+                <div class="news-desc">ICML 2026 首尔大会上，清华黄高团队与阿里合作的《The Flexibility Trap》获杰出论文，提出 JustGRPO 方法，GSM8K 准确率达 89.1%。A3C 算法获时间检验奖，MIT/耶鲁扩散模型高精度采样论文获第二篇杰出论文。</div>
+                <div class="news-meta">
+                    <span class="tag tech">ICML 2026</span>
+                    <span class="tag tech">学术突破</span>
+                    <span class="tag tech">扩散模型</span>
+                    <a class="source-link" href="https://txtmix.com/posts/news/ai-morning-news-2026-07-07/" target="_blank">Text Matrix ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Karpathy：Agent 性能差距在 Harness 而非模型，差距可达 76 分</div>
+                <div class="news-desc">HuggingFace 实验证明：冻结模型权重、仅替换 5 种 Agent Harness，pooled score 在 3.5%–80.1% 间波动。优化 Harness 后追平 Claude Sonnet 4.6，成本仅 1/7，且 Harness 可跨模型迁移。Karpathy 指出行业最大误区是急于让 Agent 干活而未理解底层机制。</div>
+                <div class="news-meta">
+                    <span class="tag tech">Agent</span>
+                    <span class="tag tech">HuggingFace</span>
+                    <span class="tag tech">工程优化</span>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>📊 大厂 AI "大一统"：告别赛马，入口归一</h4>
+                <p>微信启动 AI 助手"小微"灰度测试，支付宝上线"阿宝"，两大国民级超级应用以整合方式推动 AI 落地。字节豆包开启付费分层运营，百度整合文心全产品线，阿里收拢分散 AI 工具准备推出统一生产力平台。大厂 AI 战略从"百花齐放"进入"大一统"阶段。</p>
+                <a class="source-link" href="https://txtmix.com/posts/news/ai-morning-news-2026-07-07/" target="_blank" style="margin-top:8px">来源 ↗</a>
+            </div>
+        </div>
+
+        <!-- AI智能终端 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon device">📱</div>
+                <div class="section-title device">AI 智能终端 / 算力盒子</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">千问 & 豆包智能体功能 7·15 同步下线，AI 陪聊监管靴子落地</div>
+                <div class="news-desc">阿里千问和字节豆包相继通知用户，智能体功能将于 7 月 15 日下线，日期与《人工智能拟人化互动服务管理暂行办法》施行日完全吻合。豆包引导用户迁移至"猫箱"APP，千问将清空所有智能体配置及历史对话。AI 陪聊类产品正式进入强监管时代。</div>
+                <div class="news-meta">
+                    <span class="tag device">千问</span>
+                    <span class="tag device">豆包</span>
+                    <span class="tag device">监管政策</span>
+                    <a class="source-link" href="https://www.caixin.com/2026-07-04/102460928.html" target="_blank">财新 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">AI Agent 手机八大厂商底牌全解析：华为全栈、小米 160 亿重注</div>
+                <div class="news-desc">华为 HarmonyOS 7 小艺智能体拥有 2100+ 系统级能力，端侧 30B 模型常驻；小米 AI 研发投入超 160 亿元，MiMo-V2.5-Pro 端侧激活 42B，FP4 量化实现 1000 tokens/s；OPPO ColorOS 16 实现端侧 300 tokens/s，PersonaX 构建用户终生记忆。微信联合华为、荣耀、小米推出 A2A 协议，打破 App 孤岛。</div>
+                <div class="news-meta">
+                    <span class="tag device">华为</span>
+                    <span class="tag device">小米</span>
+                    <span class="tag device">OPPO</span>
+                    <span class="tag device">Agent手机</span>
+                    <a class="source-link" href="https://aiinking.com/article/56649" target="_blank">AIInking ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Meta Compute 正式进军云计算：过剩算力变现，冲击 Neocloud 格局</div>
+                <div class="news-desc">Meta 已签超 5GW 数据中心容量，累计近 10GW。内部代号 Meta Compute 的云基础设施项目正式对外出售 GPU 算力，2026 年资本开支指引 1250–1450 亿美元。消息公布后 Meta 股价大涨近 9%，CoreWeave 等 Neocloud 厂商遭遇抛售，云计算赛道迎来最强搅局者。</div>
+                <div class="news-meta">
+                    <span class="tag device">Meta</span>
+                    <span class="tag device">算力</span>
+                    <span class="tag device">云计算</span>
+                    <a class="source-link" href="https://news.qq.com/rain/a/20260701A0A1VM00" target="_blank">腾讯新闻 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">AI 消费通胀来临：MacBook、Xbox 全线涨价，美光成最大赢家</div>
+                <div class="news-desc">AI 数据中心大量消耗内存芯片，与消费电子产品抢夺同一供应链。MacBook Pro 印度市场一夜上涨约 CAD$1,000，Xbox 全球提价，Dell、联想、三星紧随。美光（Micron）创纪录利润，日均交易量超过英伟达和特斯拉。</div>
+                <div class="news-meta">
+                    <span class="tag device">AI通胀</span>
+                    <span class="tag device">芯片</span>
+                    <span class="tag device">消费电子</span>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>📱 NVIDIA BioNeMo：AI 真正开始做药物研发</h4>
+                <p>输入"为 PDL1 设计 10 个蛋白结合剂"，AI 自动规划步骤、在 GPU 集群上运行、输出 3D 分子结构。药物发现最昂贵的一步从数天缩短到数分钟。Anthropic 和 OpenAI 已整合此工具包。端侧 AI 不止手机——制药、芯片设计、材料科学正在被重塑。</p>
+            </div>
+        </div>
+
+        <!-- 国内运营商 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon telecom">📡</div>
+                <div class="section-title telecom">国内运营商 Token 经营</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">三大运营商 Token 套餐全面铺开，词元成为"新汽油"</div>
+                <div class="news-desc">中国移动已实现全国用户全覆盖，最低 5 元月包适合轻度体验；中国电信最低 9.9 元/月提供 1000 万词元；中国联通上海分公司面向"一人公司"推出专属套餐。从"流量比特"到"AI 词元"，运营商完成二十年来最核心的商业模式迭代。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">中国移动</span>
+                    <span class="tag telecom">中国电信</span>
+                    <span class="tag telecom">中国联通</span>
+                    <a class="source-link" href="https://baijiahao.baidu.com/s?id=1868659725863253289" target="_blank">百家号 ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">中国移动 7 月起优化 382 个存量套餐外资费，降至 10 元/GB</div>
+                <div class="news-desc">7 月 1 日起，382 个套餐资费大于 20 元且套外资费原为 30 元/G 的存量套餐统一调整为 10 元/GB。信号明确：传统流量业务持续让利，为 Token 新业务腾挪定价空间。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">中国移动</span>
+                    <span class="tag telecom">资费优化</span>
+                    <a class="source-link" href="https://www.10086.cn/aboutus/news/pannounce/js/index_250_250_detail_55315.html" target="_blank">中国移动 ↗</a>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>📋 三大运营商 Token 经营战略对比</h4>
+                <table class="telecom-table">
+                    <tr><th>运营商</th><th>核心战略</th><th>Token 产品</th><th>关键进展</th></tr>
+                    <tr><td>中国移动</td><td>算力服务 + Token 运营</td><td>月包 5 元起</td><td>全国用户全覆盖，MoMA 平台生态联盟</td></tr>
+                    <tr><td>中国电信</td><td>Token 服务作为经营主线</td><td>月包 9.9 元/1000 万词元</td><td>星辰大模型"三全"体系，API 调用+模型服务</td></tr>
+                    <tr><td>中国联通</td><td>智能体 + Token + AI 云</td><td>"一人公司"专属套餐</td><td>算力经营、云网融合，上海首发</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 国际运营商 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon global">🌏</div>
+                <div class="section-title global">国际运营商 AI & Token 商务</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">AI-RAN 商用落地：Ericsson 推订阅制，Verizon 6 万站点部署 Agentic AI</div>
+                <div class="news-desc">Ericsson 基于 15+ 现网部署推出 AI in RAN 商业订阅服务，下行吞吐量提升 20%、频谱效率提升 10%，走定制芯片路线（非 GPU）。Verizon 在 6 万个 vRAN 站点应用 Agentic AI 进行配置变更、服务保障和网络优化，并公开呼吁建立行业互操作性标准。</div>
+                <div class="news-meta">
+                    <span class="tag global">Ericsson</span>
+                    <span class="tag global">Verizon</span>
+                    <span class="tag global">AI-RAN</span>
+                    <a class="source-link" href="https://techblog.comsoc.org/2026/06/22/ai-ran-and-agentic-ai-get-real-ericsson-nokia-verizon-other-network-operators-enter-into-a-new-automation-era/" target="_blank">IEEE ComSoc ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Nokia 四周发布三个 Agentic AI 产品，推出 Autonomous Networks Agent Library</div>
+                <div class="news-desc">Nokia 在 DTW26 大会推出 Autonomous Networks Agent Library，覆盖固网、IP 和光网络自动化运营。此前已与印尼 Indosat 合作 GPU 加速 AI-RAN（Nokia-NVIDIA 架构，已被 T-Mobile US、SoftBank、Vodafone 采用）。四周内密集发布三个 Agentic 产品，Agentic AI 进入规模化生产。</div>
+                <div class="news-meta">
+                    <span class="tag global">Nokia</span>
+                    <span class="tag global">Agentic AI</span>
+                    <span class="tag global">DTW26</span>
+                    <a class="source-link" href="https://techblog.comsoc.org/2026/06/22/ai-ran-and-agentic-ai-get-real-ericsson-nokia-verizon-other-network-operators-enter-into-a-new-automation-era/" target="_blank">IEEE ComSoc ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Vodafone + AWS 推德国主权云，BT 联合 STACKIT 建私有云</div>
+                <div class="news-desc">Vodafone 与 AWS 在德国推出符合欧盟标准的主权云服务，从存储到运营全流程遵守欧盟法规。BT 与德国 STACKIT 合作扩大安全云访问，提供不经过公共互联网的私有高韧性云服务。欧洲运营商集体从"管道"升级为"数字主权基础设施"角色。</div>
+                <div class="news-meta">
+                    <span class="tag global">Vodafone</span>
+                    <span class="tag global">BT</span>
+                    <span class="tag global">主权云</span>
+                    <a class="source-link" href="https://voip.review/2026/05/11/telecoms-evolution-vodafone-bt-pioneering-ai-cloud-strategies/" target="_blank">VoIP Review ↗</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">GLM 5.2 引发 AI 利润率塌缩预警：$25/MTok 定价体系面临崩塌</div>
+                <div class="news-desc">Martin Alderson 指出"真正的 DeepSeek 时刻"在于推理边际成本而非训练成本。GLM 5.2 等开源模型持续压缩单位推理成本，Anthropic、OpenAI 的 $25/MTok 定价将无法维持。对运营商而言，这意味着采购 AI 模型服务的成本将持续下降，但也加剧了自研模型商业化的难度。</div>
+                <div class="news-meta">
+                    <span class="tag global">GLM</span>
+                    <span class="tag global">推理成本</span>
+                    <span class="tag global">定价体系</span>
+                    <a class="source-link" href="https://txtmix.com/posts/news/ai-morning-news-2026-07-07/" target="_blank">Text Matrix ↗</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>由 AI 自动生成 · 每日 9:00 更新</p>
+            <p>订阅: <a href="https://suranus.github.io/ai-news-daily/">suranus.github.io/ai-news-daily</a></p>
+        </div>
+    </div>
+</body>
+</html>
