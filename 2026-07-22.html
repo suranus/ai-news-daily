@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 新闻早报 | 2026-07-22</title>
+    <style>
+        :root {
+            --bg: #f8f9fc;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #6b7280;
+            --tech: #4f6ef7;
+            --device: #e8477a;
+            --telecom: #0db882;
+            --global: #8b5cf6;
+            --radius: 16px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --gradient-tech: linear-gradient(135deg, #4f6ef7 0%, #6b8cff 100%);
+            --gradient-device: linear-gradient(135deg, #e8477a 0%, #ff6b9d 100%);
+            --gradient-telecom: linear-gradient(135deg, #0db882 0%, #3dd9a0 100%);
+            --gradient-global: linear-gradient(135deg, #8b5cf6 0%, #a78bff 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(79,110,247,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-tech);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #4f6ef7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .date {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+        .card:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--bg);
+        }
+        .section-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .section-icon.tech { background: var(--gradient-tech); }
+        .section-icon.device { background: var(--gradient-device); }
+        .section-icon.telecom { background: var(--gradient-telecom); }
+        .section-icon.global { background: var(--gradient-global); }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .section-title.tech { color: var(--tech); }
+        .section-title.device { color: var(--device); }
+        .section-title.telecom { color: var(--telecom); }
+        .section-title.global { color: var(--global); }
+        .news-item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--bg);
+        }
+        .news-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .news-item:first-child { padding-top: 0; }
+        .news-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .news-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .news-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        .tag.tech { background: rgba(79,110,247,0.1); color: var(--tech); }
+        .tag.device { background: rgba(232,71,122,0.1); color: var(--device); }
+        .tag.telecom { background: rgba(13,184,130,0.1); color: var(--telecom); }
+        .tag.global { background: rgba(139,92,246,0.1); color: var(--global); }
+        .highlight {
+            background: linear-gradient(135deg, rgba(79,110,247,0.06) 0%, rgba(139,92,246,0.06) 100%);
+            border-left: 4px solid var(--tech);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+        .highlight h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--tech);
+        }
+        .highlight p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .telecom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .telecom-table th, .telecom-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg);
+        }
+        .telecom-table th {
+            background: rgba(13,184,130,0.08);
+            color: var(--telecom);
+            font-weight: 600;
+        }
+        .telecom-table tr:last-child td { border-bottom: none; }
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .footer a { color: var(--tech); text-decoration: none; }
+        .source-link {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .source-link:hover { color: var(--tech); text-decoration: underline; }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 26px; }
+            .card { padding: 20px; }
+            .telecom-table { font-size: 12px; }
+            .telecom-table th, .telecom-table td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">AI News Daily</div>
+            <h1>AI 新闻早报</h1>
+            <p class="date">2026 年 7 月 22 日 · 星期二</p>
+        </div>
+
+        <!-- AI技术进展 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon tech">🤖</div>
+                <div class="section-title tech">AI 技术进展</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">国产大模型冲入"两万亿参数俱乐部"：Kimi K3 与 Qwen3.8 同周发布</div>
+                <div class="news-desc">7月17日，月之暗面发布 Kimi K3 模型，2.8万亿参数、100万Token上下文窗口，是全球参数量最大的开源权重模型。在 Artificial Analysis 智能评分中排名第三，仅落后于 Claude Fable 5 和 GPT-5.6 Sol。7月19日，阿里千问上线 Qwen3.8-Max 预览版，2.4万亿参数，被誉为"除 Fable 5 外最强大模型"。国产大模型从"性价比替代者"正式蜕变为"技术并跑者"，K3 的 API 调用价格成为当前最贵国产大模型。</div>
+                <div class="news-meta">
+                    <span class="tag tech">Kimi K3</span>
+                    <span class="tag tech">Qwen3.8</span>
+                    <span class="tag tech">万亿参数</span>
+                    <a class="source-link" href="https://www.toutiao.com/article/7665107694067466798" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">WAIC 2026：AI 从"能说"到"会干"，智能体加速走向终端</div>
+                <div class="news-desc">2026世界人工智能大会（WAIC）在上海举行，3000余项展品集中亮相，超300款产品全球首发。腾讯展台展示全场景职场AI智能体工作台，能自主拆解任务、规划流程、调用工具并交付成果；联想"乐享4.0"企业超级智能体月活700万、累计销售额破50亿元；京东打造AI家庭场景（AI投影台灯、智能茶吧机、智能床垫）。"当下，AI正从工具变成伙伴，从'能生成内容'变成'能完成任务'。"腾讯集团副总裁李侃指出。</div>
+                <div class="news-meta">
+                    <span class="tag tech">WAIC 2026</span>
+                    <span class="tag tech">智能体</span>
+                    <span class="tag tech">AI落地</span>
+                    <a class="source-link" href="https://www.ce.cn/cysc/newmain/yc/jsxw/202607/t20260722_3099857.shtml" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">昇腾950超节点真机首秀 WAIC 2026：1024卡互联，"像一台计算机一样工作"</div>
+                <div class="news-desc">华为首次线下展出昇腾950超节点真机，以64卡为基本单元、最高扩展至1024张NPU卡互联，提供1 EFLOPS FP8、2 EFLOPS FP4算力。依托灵衢互联协议实现256TB跨物理节点统一内存编址，RTT时延控制在3微秒以内。大会期间，鹏城实验室联合全球计算联盟发布《超节点定义与实践白皮书》，明确"超大带宽、超低时延、统一内存编址"三大技术特征，首次厘清"真超节点"与"伪超节点"界限。昇腾384超节点已规模商用750多套，是国内唯一训练出SOTA模型的超节点。</div>
+                <div class="news-meta">
+                    <span class="tag tech">昇腾950</span>
+                    <span class="tag tech">超节点</span>
+                    <span class="tag tech">华为</span>
+                    <a class="source-link" href="https://finance.china.com.cn/industry/20260720/6316796.shtml" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">DeepLink算力网平台正式发布：打破芯片孤岛，激活国产算力集团作战能力</div>
+                <div class="news-desc">WAIC期间，国信数算发布DeepLink一体化算力网平台，以上海人工智能实验室的DeepLink开放计算体系为核，打造自主可控算力底层操作系统。该平台能搭桥国产算力与AI应用，让不同芯片不再是算力孤岛，形成系统性、集团式作战能力。商汤大装置与国信数算签署全国一体化算力网试验场战略合作，并联合多家能源企业启动算电协同战略合作。算力网首次纳入国家"六张网"，与水网、新型电网并列。</div>
+                <div class="news-meta">
+                    <span class="tag tech">DeepLink</span>
+                    <span class="tag tech">算力网</span>
+                    <span class="tag tech">商汤</span>
+                    <a class="source-link" href="https://www.stdaily.com/web/gdxw/2026-07/22/content_551222.html" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>📊 国产大模型"两万亿参数俱乐部"速览</h4>
+                <table class="telecom-table">
+                    <tr><th>模型</th><th>参数规模</th><th>上下文窗口</th><th>核心亮点</th></tr>
+                    <tr><td>Kimi K3</td><td>2.8万亿</td><td>100万Tokens</td><td>全球最大开源权重模型，Artificial Analysis评分第三</td></tr>
+                    <tr><td>Qwen3.8-Max</td><td>2.4万亿</td><td>—</td><td>"除Fable 5外最强模型"，即将全面开源</td></tr>
+                    <tr><td>DeepSeek V4</td><td>1.6万亿</td><td>—</td><td>峰谷定价上线，推理吞吐+40%，单位Token成本降30%</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- AI智能终端 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon device">&#x1F4F1;</div>
+                <div class="section-title device">AI 智能终端 / 算力盒子</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">三星 Galaxy Unpacked 2026：三款折叠屏+首款智能眼镜同台首发</div>
+                <div class="news-desc">7月22日晚9点，三星在伦敦举办 Galaxy Unpacked 2026 发布会，一口气推出三款折叠屏：Galaxy Z Fold 8（4:3"护照式"阔折叠，201g最轻横折）、Z Fold 8 Ultra（8寸大屏+2亿像素+5000mAh+柔性钛金属屏技术）、Z Flip 8。同时发布品牌首款智能眼镜 Intelligent Eyewear（与谷歌联合研发，基于Android XR，联手Gentle Monster/Warby Pioneer优化外观），以及 Galaxy Watch 9 / Watch Ultra 2。全系首发 One UI 9 + 骁龙 8 Elite Gen 5，Galaxy AI 全面落地。</div>
+                <div class="news-meta">
+                    <span class="tag device">三星</span>
+                    <span class="tag device">折叠屏</span>
+                    <span class="tag device">智能眼镜</span>
+                    <a class="source-link" href="https://www.sohu.com/a/1047506647_112986" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">后摩智能 M50 芯片 WAIC 集体亮相：10W功耗160TOPS，掌上机驱动千亿参数大模型</div>
+                <div class="news-desc">后摩智能携多款 M50 Inside 创新AI终端亮相WAIC。M50芯片依托存算一体架构，10W功耗下实现160 TOPS单芯片算力，可流畅运行30B-120B参数大模型。联想AI主机P7搭载M50，190TOPS综合算力，离线推理50 Tokens/s；联想AI Workmate概念机可在本地处理语音手势，断网可用；可道云TeamSilo A10内置力擎LQ50 M.2卡，160 TOPS支撑35B模型本地离线运行。"端侧AI元年"已至，后摩与联想、长城、中国移动等数十家头部终端企业深度合作。</div>
+                <div class="news-meta">
+                    <span class="tag device">后摩智能</span>
+                    <span class="tag device">M50芯片</span>
+                    <span class="tag device">端侧AI</span>
+                    <a class="source-link" href="https://new.qq.com/rain/a/20260718A0BO2L00" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">荣耀 Robot Phone 机器人手机 WAIC 首秀：电动云台摄像头，手机长出"手和脚"</div>
+                <div class="news-desc">荣耀在WAIC展出 Robot Phone 机器人手机，机身顶部搭载电动翻转云台摄像头，可像人类脖颈般多角度灵活转动，实现全域自主视觉感知。荣耀CEO李健表示："智能手机不应局限于冰冷触屏黑方块，我们要为手机植入AI大脑，更要赋予它可感知、可行动的物理手脚。"努比亚同期发布全球首款原生AI智能体手机，重构人机交互逻辑。大湾区正成为全球AI硬件创新最活跃试验场。</div>
+                <div class="news-meta">
+                    <span class="tag device">荣耀</span>
+                    <span class="tag device">Robot Phone</span>
+                    <span class="tag device">AI手机</span>
+                    <a class="source-link" href="https://www.toutiao.com/article/7663653329234297344/" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">Arm × 通义千问：行业首个CPU端完整运行Qwen-Audio TTS商用方案落地</div>
+                <div class="news-desc">WAIC期间，Arm与阿里通义千问合作实现行业首个在CPU端完整运行Qwen-Audio家族TTS模型的商用方案。基于Arm最新计算平台及SME2技术，支持本地个性化多语言语音克隆——用户仅需录制少量声音样本即可生成个性化语音，终端侧完成推理。相比云端处理，提供更实时、更个性化的交互体验。Arm还与百度文心、腾讯混元等本土大模型深度合作，加速端侧部署。99%智能眼镜采用Arm架构作为核心算力平台。</div>
+                <div class="news-meta">
+                    <span class="tag device">Arm</span>
+                    <span class="tag device">通义千问</span>
+                    <span class="tag device">语音AI</span>
+                    <a class="source-link" href="https://k.sina.com.cn/article_5953189932_162d6782c06704q4iw.html" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>📊 端侧AI终端创新矩阵（WAIC 2026 首发盘点）</h4>
+                <table class="telecom-table">
+                    <tr><th>终端类型</th><th>代表产品</th><th>算力/亮点</th><th>品牌</th></tr>
+                    <tr><td>折叠屏手机</td><td>Z Fold 8 Ultra</td><td>8寸屏+200MP+5000mAh</td><td>三星</td></tr>
+                    <tr><td>AI眼镜</td><td>Intelligent Eyewear</td><td>Android XR+谷歌合作</td><td>三星</td></tr>
+                    <tr><td>机器人手机</td><td>Robot Phone</td><td>电动云台+自主视觉</td><td>荣耀</td></tr>
+                    <tr><td>Agent Computer</td><td>联想AI主机P7</td><td>190TOPS+1220B离线推理</td><td>联想/后摩</td></tr>
+                    <tr><td>智能体手机</td><td>努比亚原生AI手机</td><td>系统级智能体重构交互</td><td>努比亚</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 国内运营商 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon telecom">&#x1F4E1;</div>
+                <div class="section-title telecom">国内运营商 Token 经营</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">三大运营商集体押注"卖铲"：WAIC 2026 讲的都是 Token 故事</div>
+                <div class="news-desc">在刚刚结束的WAIC 2026上，三大运营商罕见地做了同一动作——讲"Token故事"。截至2026年3月，我国日均Token调用量飙升到140万亿，较2024年初增长超1000倍。Token正取代流量，成为AI产业新度量衡。中国电信董事长柯瑞文将"Token经营的本质"定义为"给客户提供AI服务"；中国移动发布统一工业互联网品牌"移动天工"，以Token计量实现能力按需调用；中国联通走"全栈Token经营"路线，构建Token从"创造、存放、转运、定价到应用"全流程服务体系。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">Token经营</span>
+                    <span class="tag telecom">WAIC 2026</span>
+                    <span class="tag telecom">三大运营商</span>
+                    <a class="source-link" href="https://www.toutiao.com/article/7665167754588176932" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">中国电信"Token工厂"项目：宁夏集中采购规模达164.51亿元</div>
+                <div class="news-desc">中国电信宁夏分公司发布2026年"Token工厂"生成能力服务集中采购项目，整体预估规模达164.51亿元，是三家运营商中Token生产决心最直接的佐证。服务端推出星辰TokenHub运营服务平台——企业只需开一个Token账户、接一套API，就能跨模型调用各类AI能力。中国电信是唯一在个人端正式启动商用Token套餐的运营商：9.9元/月起（轻享版1000万词元），已落地110余个行业大模型、350余个智能体，服务3.7万家政企客户。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">中国电信</span>
+                    <span class="tag telecom">Token工厂</span>
+                    <span class="tag telecom">164亿</span>
+                    <a class="source-link" href="https://www.toutiao.com/article/7665167754588176932" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">中国电信智传网（AIFlow）：110Kbps极窄卫星链路稳定回传720P高清视频</div>
+                <div class="news-desc">WAIC期间，中国电信展示智传网（AIFlow）技术突破——依托生成式智能传输，可在仅110Kbps的极窄卫星链路下稳定回传720P高清视频，实现"空天地海"全域智能落地。中国电信"息壤一体化算力网"已适配12款国产主流智算芯片，落地21个省市，服务12家央企。天翼智看通过多模态理解能力让摄像头从"看得见"升级为"看得懂"——用户一句话即可检索家人动态。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">智传网</span>
+                    <span class="tag telecom">卫星通信</span>
+                    <span class="tag telecom">AIFlow</span>
+                    <a class="source-link" href="https://www.163.com/dy/article/L25I6DJV05503FCU.html" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">词元经济时代来临：以后不仅要交话费，还要交"词元费"</div>
+                <div class="news-desc">2026年WAIC首次将Token经济提升到核心位置。中国电信率先推出Token Plan（9.9元1000万词元起）；中国移动推出5.99元算力加餐包，江苏/北京试点"5元250万Tokens"极简体验包，上海差异化分级套餐已发展220万用户、年增营收超3000万元；中国联通将Token调用额度深度绑定联通云服务。AI算力正加速成为社会运行的"水电煤"，国家数据局已明确将词元经济纳入工作体系。</div>
+                <div class="news-meta">
+                    <span class="tag telecom">词元经济</span>
+                    <span class="tag telecom">套餐</span>
+                    <span class="tag telecom">国家数据局</span>
+                    <a class="source-link" href="https://dy.163.com/article/L2COVM5A05119GO7.html" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>📋 三大运营商 Token 套餐对比（2026 WAIC 最新版）</h4>
+                <table class="telecom-table">
+                    <tr><th>运营商</th><th>个人端套餐</th><th>企业端核心平台</th><th>商业化节奏</th></tr>
+                    <tr><td>中国电信</td><td>9.9元/月（1000万词元）</td><td>星辰TokenHub + 164亿Token工厂</td><td>唯一已商用个人套餐</td></tr>
+                    <tr><td>中国移动</td><td>5.99元算力加餐包（试点）</td><td>MoMA平台（300+模型）+ 移动天工</td><td>上海试点3000万年增营收</td></tr>
+                    <tr><td>中国联通</td><td>Token绑定联通云</td><td>"三个一"全栈Token体系 + 云犀</td><td>政企覆盖最广（5.9万家）</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 国际运营商 -->
+        <div class="card">
+            <div class="section-header">
+                <div class="section-icon global">&#x1F30F;</div>
+                <div class="section-title global">国际运营商 AI & Token 商务</div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">德国电信全面部署 ChatGPT Enterprise：5万月活用户，AI工具使用量增长546%</div>
+                <div class="news-desc">德国电信（Deutsche Telekom）已在全组织部署OpenAI的ChatGPT Enterprise，成为首批"AI原生电信运营商"。内部AI工具使用量自2026年初增长546%，超5万名员工成为月度活跃用户。首席产品与数字官Jonathan Abrahamson强调："成为AI原生不是把AI添加到现有工作方式中，而是重新设计工作本身。"公司正将实时翻译、通话中助手、通话后摘要直接嵌入客户交互，无需下载新应用。AI同时运行移动网络实时优化，动态重新分配容量。</div>
+                <div class="news-meta">
+                    <span class="tag global">Deutsche Telekom</span>
+                    <span class="tag global">OpenAI</span>
+                    <span class="tag global">AI原生</span>
+                    <a class="source-link" href="https://www.wedoany.com/shortnews/383561.html" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">德国电信从运营商蜕变为"欧洲AI平台运营商"：主权云+工业AI+网络级AI三位一体</div>
+                <div class="news-desc">德国电信的AI战略不只是添加助手功能，而是将AI推入网络层、内部运营和主权云基础设施。Magenta AI通话助手直接通过电信网络基础设施提供实时翻译和摘要，用户无需单独App。网络自动化从RAN Guardian迈向MINDR跨域AI平台——目标是实现AI原生自愈网络。与NVIDIA的工业AI云合作，结合密集光纤足迹和边缘云资产，为金融、医疗、汽车制造等提供主权基础设施服务，区别于美国超大规模云厂商的"一合同捆绑连接+本地基础设施+主权定位"方案。</div>
+                <div class="news-meta">
+                    <span class="tag global">主权AI</span>
+                    <span class="tag global">MINDR</span>
+                    <span class="tag global">Magenta AI</span>
+                    <a class="source-link" href="https://aiinsightnews.com/if-deutsche-telekom-can-turn-sovereign-infrastructure-into-products-its-ai-push-becomes-more-than-a-telecom-upgrade" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-title">SK Telecom 15GW AI数据中心计划：瞄准亚洲AI基础设施枢纽</div>
+                <div class="news-desc">7月5日，SK Telecom宣布将建设规模达15GW的AI数据中心，目标成为亚洲AI基础设施枢纽。此前6月8日，SKT与NVIDIA宣布基于DSX平台建设吉瓦级AI Cloud，首座AI工厂计划2027年上线。SKT将成为NVIDIA Cloud Partner，DSX平台以最低Token成本和最高能效为设计目标。SKT董事长崔泰源表示："通过NVIDIA密切合作，我们已具备从芯片到数据中心运营的全栈AI基础设施能力。"</div>
+                <div class="news-meta">
+                    <span class="tag global">SK Telecom</span>
+                    <span class="tag global">15GW</span>
+                    <span class="tag global">NVIDIA DSX</span>
+                    <a class="source-link" href="https://sktelecom.com/en/" target="_blank">来源 &#x2197;</a>
+                </div>
+            </div>
+            <div class="highlight">
+                <h4>🌐 全球电信AI转型路线对比</h4>
+                <table class="telecom-table">
+                    <tr><th>运营商</th><th>AI核心战略</th><th>关键数据/进展</th><th>差异化壁垒</th></tr>
+                    <tr><td>Deutsche Telekom</td><td>AI原生运营+主权云+MINDR自愈网络</td><td>5万月活，AI使用+546%</td><td>网络级AI嵌入+欧洲主权定位</td></tr>
+                    <tr><td>SK Telecom</td><td>15GW AI数据中心+NVIDIA DSX AI Cloud</td><td>2027年首座AI工厂上线</td><td>亚洲AI枢纽+GPUaaS+A.X K1</td></tr>
+                    <tr><td>中国电信</td><td>Token工厂+TokenHub+智传网</td><td>164亿采购+9.9元套餐商用</td><td>卫星极窄链路AI传输+个人套餐先行</td></tr>
+                    <tr><td>中国移动</td><td>移动天工+MoMA+算网大脑</td><td>300+模型+百万亿日调度</td><td>工业互联网Token计量+上海3000万营收</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>由 AI 自动生成 · 每日 9:00 更新</p>
+            <p>订阅: <a href="https://suranus.github.io/ai-news-daily/">suranus.github.io/ai-news-daily</a></p>
+        </div>
+    </div>
+</body>
+</html>
